@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Electric Sidecar - Extended OBD-II Parameters</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-itunes-app" content="app-id=1663683832">
+  <meta name="description" content="Extending Electric Sidecar with custom parameters.">
+  <meta name="keywords" content="OBD-II, Electric Sidecar, trip logger, telematics, vehicle connectivity">
+  <meta property="og:image" content="/gfx/addpid.png" />
+  <link rel="stylesheet" href="/css/main.css">
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_eDtYLUe7s9m2FdF3d1hsw8XXnG57yJNU4rLvbT0IXNV',{api_host:'https://eu.i.posthog.com'})
+  </script>
+  <script>
+    !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_eza3npfz93xw', {"aaid":"<AAID-HERE>","email":"<EMAIL-HERE>","externalId":"<EXTERNAL-ID-HERE>","idfa":"<IDFA-HERE>"});rdt('track', 'PageVisit');
+  </script>
+</head>
+<body class="bg-gray-100">
+<main>
+  <!-- Navigation bar -->
+  <div class="container mx-auto px-2 md:px-0 font-sans">
+    <div class="py-2 border-b border-gray-300 flex justify-between items-center">
+      <a href="/" class="flex items-center opacity-70 hover:opacity-100 transition-opacity">
+        <img src="/gfx/site-logo.png" alt="Electric Sidecar logo" class="h-6 md:h-8 w-auto mr-1 md:mr-2">
+        <h1 class="font-rounded text-black text-sm md:text-base font-bold w-24 leading-none md:leading-tight">Electric Sidecar</h1>
+      </a>
+
+      <nav class="flex items-center">
+        <a href="/shortcuts" class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Shortcuts</a>
+        <a href="/scanning" class="text text-sm md:text-base text-black font-semibold mr-4 transition-opacity">Scanning</a>
+        <a href="/privacy-policy" class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Privacy</a>
+        <a href="https://electricsidecar.substack.com/" class="text text-sm md:text-base text-black font-medium md:mr-4 opacity-70 hover:opacity-100 transition-opacity" target="_blank">News</a>
+        <a class="hidden md:block" href="https://apps.apple.com/app/apple-store/id1663683832?pt=21311&ct=Website&mt=8" target="_blank" rel="noopener noreferrer">
+          <img src="/gfx/AppStore.png" alt="Download Electric Sidecar from the App Store" style="max-height: 40px">
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Sub-navigation bar -->
+  <div class="container mx-auto px-2 md:px-0 font-sans">
+    <div class="py-2 flex items-center">
+      <nav class="flex items-center ml-auto">
+        <a href="/scanning" class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Basics</a>
+        <a href="/scanning/extended-pids" class="text text-sm md:text-base text-black font-semibold mr-4 transition-opacity">Extended PIDs</a>
+        <a href="/scanning/repo-status" class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Vehicle support</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="container mx-auto text-black my-4 px-2 md:px-0">
+    <img class="mx-auto mb-4 text-center" src="/gfx/addpid.png" alt="Custom PIDs" width="96" height="103.68" />
+    <div class="text-center">
+      <h1 class="text-4xl font-bold font-rounded">Extended Parameters</h1>
+      <p class="mb-4">How to extend Electric Sidecar's functionality with custom parameters</p>
+    </div>
+  </div>
+
+  <!-- Data format -->
+  <div class="container mx-auto text-black my-8 px-2 md:px-0">
+    <h1 class="text-2xl font-bold">What are Extended Parameters?</h1>
+    <p class="mb-4">
+      Extended Parameter IDs, or <b>PIDs</b>, are special codes used in the OBD-II (On-Board Diagnostics) system of vehicles to request data from a vehicle's electronic control unit (ECU). While standard PIDs provide basic data like vehicle speed and engine RPM, extended PIDs can offer more specific and detailed information, which can be crucial for advanced diagnostics.
+    </p>
+    <p class="mb-4">
+      For newer vehicles, especially electric vehicles, extended PIDs are often the only way to get information about the vehicle over OBD-II.
+    </p>
+
+    <h2 class="text-lg font-bold">Extended PIDs in Electric Sidecar</h2>
+    <p class="mb-4">
+      In addition to supporting many of the industry standard OBD-II PIDs specified in <a class="text-blue-500 hover:underline" href="https://www.sae.org/standards/content/j1979da_202404/">SAE J1979</a>, Electric Sidecar supports extended PIDs through its community GitHub organization, <a class="text-blue-500 hover:underline" href="https://github.com/electricsidecar">github.com/electricsidecar</a>.
+    </p>
+    <p class="mb-4">
+      Every vehicle make and model has its own GitHub repository in the Electric Sidecar organization. If a make and model you're interested in is not yet available, send an email with your requested make and model to <a class="text-blue-500 hover:underline" href="mailto:support@electricsidecar.app">support@electricsidecar.app</a> or <a class="text-blue-500 hover:underline" href="https://github.com/ElectricSidecar/ElectricSidecar/issues/new">open an issue</a>.
+    </p>
+    <p class="mb-4">
+      When you connect a scanner to your car, Electric Sidecar will ask for the car's VIN in order to determine its make and model. The make and model will then be used to enable the relevant extended PIDs within the app.
+    </p>
+    <p class="mb-4">
+      All extended PIDs are licensed under a <a class="text-blue-500 hover:underline" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
+    </p>
+  </div>
+
+  <!-- Contributing -->
+  <div class="container mx-auto text-black my-4 px-2 md:px-0">
+    <h1 class="text-2xl font-bold">Contributing extended PIDs</h1>
+    <p class="mb-4">
+      Contributions from the automotive community help expand the library of extended PIDs available in Electric Sidecar. By sharing extended PIDs, we all contribute to the ability for car owners to access more of their vehicle data.
+    </p>
+
+    <p class="mb-4">
+      To contribute an extended PID you must first fork the GitHub repository for the relevant make and model on <a class="text-blue-500 hover:underline" href="https://github.com/electricsidecar">github.com/electricsidecar</a>.
+    </p>
+
+    <p class="mb-4">
+      Extended PIDs are stored at the following path in each repository:
+    </p>
+
+    <code class="mb-4"><pre>
+signalsets/v2/default.json
+    </pre></code>
+
+    <h2 class="text-lg font-bold">Examples</h2>
+    <ul class="mb-4 ml-4 list-disc">
+      <li><a class="text-blue-500 hover:underline" href="https://github.com/ElectricSidecar/Ford-Mustang/blob/main/signalsets/v2/default.json">Ford Mustang</a></li>
+      <li><a class="text-blue-500 hover:underline" href="https://github.com/ElectricSidecar/MG-MG4/blob/main/signalsets/v2/default.json">MG MG4</a></li>
+      <li><a class="text-blue-500 hover:underline" href="https://github.com/ElectricSidecar/Porsche-Taycan/blob/main/signalsets/v2/default.json">Porsche Taycan</a></li>
+    </ul>
+
+    <div class="container mx-auto text-black my-4 px-2 md:px-0">
+      <hr />
+    </div>
+  
+    <h1 class="text-2xl font-bold">Extended PID file format</h1>
+    <p class="mb-4">
+      Extended PIDs are stored in a <a class="text-blue-500 hover:underline" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JSON file format</a> using the following top level specification:
+    </p>
+
+    <code class="mb-4"><pre>
+{
+  "commands": [<a class="text-blue-500 hover:underline" href="#command">Command</a>]
+  "signalGroups": [SignalGroup]?
+}
+    </pre></code>
+
+    <h4 class="font-medium mb-2">Complete example</h4>
+    <code class="mb-4"><pre>
+{
+  "commands": [{
+    "<a class="text-blue-500 hover:underline" href="#command-hdr">hdr</a>": "713",
+    "<a class="text-blue-500 hover:underline" href="#command-rax">rax</a>": "77D",
+    "<a class="text-blue-500 hover:underline" href="#command-cmd">cmd</a>": {"22": "2B1B"},
+    "<a class="text-blue-500 hover:underline" href="#command-freq">freq</a>": 0.25,
+    "signals": [{
+      "id": "TAYCAN_TIRE_FL_SPD",
+      "path": "Movement",
+      "fmt": {
+        "len": 16,
+        "max": 1000,
+        "mul": 0.05625,
+        "unit": "kilometersPerHour"
+      },
+      "name": "Front left wheel speed"
+    }]
+  }]
+}
+    </pre></code>
+
+    <h4 class="font-medium mb-2">Properties</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">commands <a href="#command" class="font-light text-gray-500 border-l border-gray-500 ml-1 px-2 hover:underline">[Command]</a><span class="font-light text-gray-500 border-l border-gray-500 pl-2">Required</span></span> Array of OBD-II commands that can be sent to this vehicle.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">signalGroups <span class="font-light text-gray-500 border-l border-gray-500 ml-1 px-2">[SignalGroup]</span><span class="font-light text-gray-500 border-l border-gray-500 pl-2">Optional</span></span> Array of signal groups that can aggregate various signals together.</li>
+    </ul>
+
+    <div class="container mx-auto text-black my-4 px-2 md:px-0">
+      <hr />
+    </div>
+  
+    <h2 class="text-lg font-bold" id="command">Command</h2>
+    <p class="mb-4">
+      Commands represent a single OBD-II message that can be sent to the vehicle. The vehicle will typically respond to a Command with one or more Signals. Commands define the format of the Signals they expect to receive.
+    </p>
+
+    <h4 class="font-medium mb-2">Example</h4>
+    <code class="mb-4"><pre>
+<span class="font-bold">{
+  "commands": [{
+    "hdr": "713",
+    "rax": "77D",
+    "cmd": {"22": "2B1B"},
+    "freq": 0.25,
+    "signals": </span><span class="text-gray-400">[{
+      "id": "TAYCAN_TIRE_FL_SPD",
+      "path": "Movement",
+      "fmt": {
+        "len": 16,
+        "max": 1000,
+        "mul": 0.05625,
+        "unit": "kilometersPerHour"
+      },
+      "name": "Front left wheel speed"
+    }]</span>
+<span class="font-bold">  }]
+}</span>
+    </pre></code>
+
+    <h4 class="font-medium mb-2">Required properties</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold" id="command-hdr">hdr <span class="font-light text-gray-500 border-l border-gray-500 ml-1 px-2">String</span><span class="font-light text-gray-500 border-l border-gray-500 pl-2">ATSHhhh</span></span> The command's 11-bit header, expressed as 3 hexadecimal characters.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold" id="command-cmd">cmd <a href="#servicepid" class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2 hover:underline">ServicePID</a></span> The service and PID that should be sent.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold" id="command-freq">freq <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Number</span></span> The maximum frequency at which this command should be sent, in seconds.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">signals <a href="#signal" class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2 hover:underline">[Signal]</a></span> The collection of signals that this command returns.</li>
+    </ul>
+    <h4 class="font-medium mb-2">Optional properties</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold" id="command-rax">rax <span class="font-light text-gray-500 border-l border-gray-500 ml-1 px-2">String</span><span class="font-light text-gray-500 border-l border-gray-500 pl-2">ATCRAhhh</span></span> The command's 11-bit receive address, expressed as 3 hexadecimal characters. If not provided, then the command will attempt to guess the receive address based on the response.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold" id="command-fcm1">fcm1 <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Boolean</span></span>
+        Some parameters only respond with the first frame when using the default flow control mode, 0. Setting this property to true enables flow control mode 1, requesting that all frames be returned together. If not provided, false is assumed and flow control mode 0 will be used. When enabled, the following configuration will be set prior to invoking the command:
+            <code class="mb-4"><pre>
+ATFCSH7E0
+ATFCSD300000
+ATFCSM1
+    </pre></code>
+      </li>
+    </ul>
+
+    <div class="container mx-auto text-black my-4 px-2 md:px-0">
+      <hr />
+    </div>
+  
+    <h2 class="text-lg font-bold" id="connectable">Connectable</h2>
+    <p class="mb-4">
+      Connectables are elements of the Electric Sidecar user interface that can be powered by values returned from an OBD-II scanner. Connectables expect their values to be provided in a certain <a class="text-blue-500 hover:underline" href="#unit">Unit</a>.
+    </p>
+
+    <h4 class="font-medium mb-2">Example</h4>
+    <code class="mb-4"><pre>
+<span class="text-gray-400">{
+  "commands": [{
+    "hdr": "7E0",
+    "rax": "7E8",
+    "cmd": {"22": "1156"},
+    "freq": 1,
+    "signals": [{
+      "id": "TAYCAN_HVBAT_SOC",
+      "path": "Battery",
+      "fmt": {
+        "len": 8,
+        "max": 100,
+        "mul": 0.5,
+        "unit": "percent"
+      },
+      "name": "HV battery charge",</span>
+<span class="font-bold">      "suggestedMetric": "stateOfCharge"</span>
+<span class="text-gray-400">    }]
+  }]
+}</span>
+    </pre></code>
+
+    <h4 class="font-medium mb-2">Available Connectables</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold fuel-parameter">fuelTankLevel <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Normal</span></span> How full the vehicle's gas tank is.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold length-parameter">odometer <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Length</span></span> The total distance the vehicle has traveled.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold speed-parameter">speed <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Speed</span></span> How fast the vehicle is moving.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold battery-parameter">stateOfCharge <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Normal</span></span> How full the vehicle's battery is.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold health-parameter">stateOfHealth <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Normal</span></span> The health of the vehicle's high voltage battery pack.</li>
+    </ul>
+
+    <div class="container mx-auto text-black my-4 px-2 md:px-0">
+      <hr />
+    </div>
+  
+    <h2 class="text-lg font-bold" id="format">Format</h2>
+    <p class="mb-4">
+      Formats define how to decode a signal as a human-readable value from a command's response.
+    </p>
+
+    <h4 class="font-medium mb-2">Example</h4>
+    <code class="mb-4"><pre>
+<span class="text-gray-400">{
+  "commands": [{
+    "hdr": "713",
+    "rax": "77D",
+    "cmd": {"22": "2B1B"},
+    "freq": 0.25,
+    "signals": [{
+      "id": "TAYCAN_TIRE_FL_SPD",
+      "path": "Movement",</span>
+<span class="font-bold">      "fmt": {
+        "len": 16,
+        "max": 1000,
+        "mul": 0.05625,
+        "unit": "kilometersPerHour"
+      },</span>
+<span class="text-gray-400">      "name": "Front left wheel speed"
+    }]
+  }]
+}</span>
+    </pre></code>
+
+    <h4 class="font-medium mb-2">How the value is calculated</h4>
+    <code class="mb-4"><pre>
+var value: Double
+if sign {
+  value = SignedBitReader(response, bix, len)
+} else {
+  value = UnsignedBitReader(response, bix, len)
+}
+value = (value * mul / div + add).clamped(to: min...max)
+return Measurement(value: value, unit: unit)
+    </pre></code>
+
+    <h4 class="font-medium mb-2">Required properties</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">len <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Int</span></span> The number of bits to decode from the response, starting from the bit offset (bix).</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">max <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Double</span></span> The maximum value this signal can have.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">unit <a href="#unit" class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2 hover:underline">Unit</a></span> The unit this value should be interpreted as.</li>
+    </ul>
+    <h4 class="font-medium mb-2">Optional properties</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">bix <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Int</span></span> The bit offset to start reading the value from. Defaults to 0.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">sign <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Boolean</span></span> Whether or not to treat the bit values as a signed, twos-complement integer. Defaults to false.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">min <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Double</span></span> The minimum value this signal can have. Defaults to 0.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">add <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Double</span></span> Added to the extracted numerical value. Defaults to 0.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">mul <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Double</span></span> The extracted numerical value is multiplied by this value. Defaults to 1.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">div <span class="font-light text-gray-500 border-l border-gray-500 ml-1 px-2">Double</span><span class="text-purple-500 border-l border-gray-500 pl-2">v1.13+</span></span> The extracted numerical value is divided by this value. Defaults to 1.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">omin <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Double</span></span> The optimal minimum value, expressed in the same unit as the value. If not provided, no optimal minimum value will be shown.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">omax <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Double</span></span> The optimal maximum value, expressed in the same unit as the value. If not provided, no optimal maximum value will be shown.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">oval <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Double</span></span> The optimal value, expressed in the same unit as the value. If not provided, no optimal value will be shown.</li>
+    </ul>
+
+    <div class="container mx-auto text-black my-4 px-2 md:px-0">
+      <hr />
+    </div>
+  
+    <h2 class="text-lg font-bold" id="servicepid">ServicePID</h2>
+    <p class="mb-4">
+      A service PID represents a parameter ID for a specific service.
+    </p>
+
+    <h4 class="font-medium mb-2">Examples</h4>
+    <code class="mb-4"><pre>
+{"22": "2B1B"}
+{"01": "02"}
+    </pre></code>
+
+    <p class="mb-4">
+      Two services are currently supported: <code>01</code> and <code>22</code>.
+    </p>
+
+    <table class="table-auto border-collapse border border-gray-800">
+      <thead>
+        <tr class="bg-gray-800 text-white">
+          <th class="px-2 md:px-4 py-2">Service</th>
+          <th class="px-2 md:px-4 py-2">Format</th>
+          <th class="px-2 md:px-4 py-2">Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="px-2 md:px-4 py-2">01<br/></td>
+          <td class="px-4 py-2 text-center"><span>hh</span></td>
+          <td class="px-4 py-2 text-center"><span>01</span></td>
+        </tr>
+        <tr>
+          <td class="px-2 md:px-4 py-2">22<br/></td>
+          <td class="px-4 py-2 text-center"><span>hhhh</span></td>
+          <td class="px-4 py-2 text-center"><span>2B1B</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="container mx-auto text-black my-4 px-2 md:px-0">
+      <hr />
+    </div>
+  
+    <h2 class="text-lg font-bold" id="signal">Signal</h2>
+    <p class="mb-4">
+      Signals are individual values contained within the response of a <a class="text-blue-500 hover:underline" href="#command">Command</a> sent to a vehicle. Most Commands only have one Signal, but Commands can pack any number of signals into a single response.
+    </p>
+
+    <h4 class="font-medium mb-2">Example</h4>
+    <code class="mb-4"><pre>
+<span class="text-gray-400">{
+  "commands": [{
+    "hdr": "713",
+    "rax": "77D",
+    "cmd": {"22": "2B1B"},
+    "freq": 0.25,
+    "signals": [</span><span class="font-bold">{
+      "id": "TAYCAN_TIRE_FL_SPD",
+      "path": "Movement",
+      "fmt": </span><span class="text-gray-400">{
+        "len": 16,
+        "max": 1000,
+        "mul": 0.05625,
+        "unit": "kilometersPerHour"
+      },</span><span class="font-bold">
+      "name": "Front left wheel speed"
+    }</span>]
+<span class="text-gray-400">  }]
+}</span>
+    </pre></code>
+
+    <h4 class="font-medium mb-2">Required properties</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">id <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">String</span></span> The signal's globally unique identifier.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">name <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">String</span></span> The signal's human-readable name. Should be short and descriptive.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">fmt <a href="#format" class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2 hover:underline">Format</a></span> How to interpret the signal's value from the command response.</li>
+    </ul>
+    <h4 class="font-medium mb-2">Optional properties</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">path <span class="font-light text-gray-500 border-l border-gray-500 ml-1 px-2">String</span></span> The navigation path for the signal in Electric Sidecar's parameters page. If not provided, the signal's id property will be used as the navigation path instead.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">description <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">String</span></span> A long form description of the signal's purpose and how it should be interpreted.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">hidden <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.14+</span> <span class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2">Boolean</span></span> If true, hides the signal from the user interface. Default value is false if not provided.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold">suggestedMetric <a href="#connectable" class="font-light text-gray-500 border-l border-gray-500 ml-1 pl-2 hover:underline">Connectable</a></span> The user interface value that this signal should update.</li>
+    </ul>
+
+    <div class="container mx-auto text-black my-4 px-2 md:px-0">
+      <hr />
+    </div>
+  
+    <h2 class="text-lg font-bold" id="unit">Unit</h2>
+    <p class="mb-4">
+      Units define how a signal's value should be interpreted and represented to the user. Units are categorized, and values of the same unit category can be translated to one another. For example, miles and kilometers both belong to the same unit type Length. 
+    </p>
+    <p class="mb-4">
+      If a unit includes a version (e.g. <span class="bg-blue-100 rounded px-2 py-1 font-semibold"><span class="text-purple-500 border-l">v1.13+</span></span>), that means the unit was introduced in that version of the Electric Sidecar application. Older app versions will fall back to treating unknown units as a scalar.
+    </p>
+
+    <h4 class="font-medium mb-2" id="unit-length">Accleration units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold acceleration-parameter">gravity</span> Acceleration as a g-force.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Angle units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold angle-parameter">degrees</span> Angle in degrees.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold angle-parameter">radians</span> Angle in radians.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Electric current units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold current-parameter">kiloamps <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Current in kiloamps.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold current-parameter">amps <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Current in amperes.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold current-parameter">milliamps</span> Current in milliamps.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Electric potential difference units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold volts-parameter">kilovolts <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Voltage measured in kilovolts.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold volts-parameter">volts</span> Voltage measured in volts.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold volts-parameter">millivolts <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Voltage measured in millivolts.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Energy units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold volts-parameter">kilowattHours</span> Kilowatt-hours.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold volts-parameter">kiljoules <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.14+</span></span> Kilojoules.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold volts-parameter">joules <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.14+</span></span> Joules.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Length units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold length-parameter">centimeters <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Distance in centimeters.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold length-parameter">meters <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Distance in meters.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold length-parameter">kilometers</span> Distance in kilometers.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold length-parameter">miles</span> Distance in miles.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold length-parameter">feet <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Distance in feet.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold length-parameter">inches <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Distance in inches.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Mass flow rate units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold airflow-parameter">gramsPerSecond</span> Mass flow rate in grams per second.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold airflow-parameter">kilogramsPerHour <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.14+</span></span> Mass flow rate in kilograms per hour.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Normal units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold percent-parameter">percent</span> A percentage, typically between 0-100%.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold percent-parameter">normal <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> A normal, typically between 0.0-1.0.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Power units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold volts-parameter">kilowatts <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Kilowatts.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold volts-parameter">watts <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Kilowatts.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold volts-parameter">milliwatts <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Milliwatts.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Pressure units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold tirepressure-parameter">bars</span> Pressure in bar.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold tirepressure-parameter">psi</span> Pound-force per square inch.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold tirepressure-parameter">kilopascal</span> Pressure in kilopascal.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Revolutions units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold revolutions-parameter">rpm</span> Revolutions per minute.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Scalar units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold scalar-parameter">scalar</span> An as-is numerical value.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold scalar-parameter">ascii <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> The extracted bytes will be formatted as an ASCII string. Scaling values will be ignored.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold scalar-parameter">hex <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> An as-is numerical value, formatted in hexadecimal. Scaling values will be ignored.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold scalar-parameter">offon</span> 0 = "off", 1 = "on"</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold scalar-parameter">noyes</span> 0 = "no", 1 = "yes"</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold scalar-parameter">yesno</span> 0 = "yes", 1 = "no".</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold scalar-parameter">unknown</span> Treated as an as-is numerical value.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Speed units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold speed-parameter">metersPerSecond <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Speed in meters per second.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold speed-parameter">kilometersPerHour</span> Speed in kilometers per hour.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold speed-parameter">milesPerHour <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Speed in miles per hour.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Temperature units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold thermometer-parameter">celsius</span> Temperature in degrees celsius.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold thermometer-parameter">fahrenheit <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Temperature in degrees fahrenheit.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold thermometer-parameter">kelvin <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Temperature in degrees kelvin.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Time units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold time-parameter">seconds</span> Time, measured in seconds.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold time-parameter">minutes</span> Time, measured in minutes.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold time-parameter">hours</span> Time, measured in hours.</li>
+    </ul>
+
+    <h4 class="font-medium mb-2" id="unit-length">Volume units</h4>
+    <ul class="mb-4 ml-4 list-disc">
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold volume-parameter">liters</span> Volume in liters.</li>
+      <li class="mb-2"><span class="bg-blue-100 rounded px-2 py-1 font-semibold volume-parameter">gallons <span class="text-purple-500 border-l border-gray-500 ml-1 pl-2">v1.13+</span></span> Volume in gallons.</li>
+    </ul>
+
+  </div>
+
+  <footer class="bg-dark text-white py-8">
+    <div class="container mx-auto px-4">
+        <div class="text-left">
+            <p class="mb-4">Apple Watch, watchOS and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries and regions.</p>
+            <p class="mb-4">Third party logos and brand names are used for information purposes only and do not necessarily indicate affiliation with Electric Sidecar.</p>
+            <p>Copyright © 2024 fearless design, LLC. All rights reserved.</p>
+        </div>
+    </div>
+  </footer>
+</main>
+</body>
+</html>

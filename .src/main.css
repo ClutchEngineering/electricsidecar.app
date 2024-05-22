@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+  .font-rounded {
+    font-family: ui-rounded,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  .text-black {
+    color: #262625;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; /* For Firefox */
+  }
+  .text-white {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; /* For Firefox */
+  }
+  .bg-dark {
+    background-color: #262625;
+  }
+  .shortcuts-icon:before {
+    border-radius: 4px;
+    background-size: 18px;
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 1px;
+    vertical-align: -3px;
+  }
+  .charging-parameter:before,
+  .plug-parameter:before,
+  .climatization-parameter:before,
+  .lock-parameter:before,
+  .front-left-open-parameter:before,
+  .front-right-open-parameter:before,
+  .rear-left-open-parameter:before,
+  .rear-right-open-parameter:before,
+  .front-trunk-open-parameter:before,
+  .rear-trunk-open-parameter:before,
+  .parking-brake-parameter:before,
+  .inservice-parameter:before,
+  .sleeping-parameter:before,
+  .sunroof-open-parameter:before,
+  .pin-parameter:before,
+  .length-parameter:before,
+  .health-parameter:before,
+  .heading-parameter:before,
+  .speed-parameter:before,
+  .battery-parameter:before,
+  .fuel-parameter:before,
+  .tirepressure-parameter:before,
+  .target-parameter:before,
+  .thermometer-parameter:before,
+  .revolutions-parameter:before,
+  .time-parameter:before,
+  .current-parameter:before,
+  .volts-parameter:before,
+  .percent-parameter:before,
+  .scalar-parameter:before,
+  .angle-parameter:before,
+  .volume-parameter:before,
+  .airflow-parameter:before,
+  .acceleration-parameter:before {
+    border-radius: 4px;
+    background-size: 18px;
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+    margin-left: -2px;
+    vertical-align: -3px;
+  }
+  .shortcuts-icon:before {
+    background-image: url(/gfx/shortcuts.png);
+  }
+  .charging-parameter:before {
+    background-image: url(/gfx/parameters/bolt.png);
+  }
+  .plug-parameter:before {
+    background-image: url(/gfx/parameters/plug.png);
+  }
+  .climatization-parameter:before {
+    background-image: url(/gfx/parameters/climatization.png);
+  }
+  .lock-parameter:before {
+    background-image: url(/gfx/parameters/lock.png);
+  }
+  .front-left-open-parameter:before {
+    background-image: url(/gfx/parameters/front.left.open.png);
+  }
+  .front-right-open-parameter:before {
+    background-image: url(/gfx/parameters/front.right.open.png);
+  }
+  .rear-left-open-parameter:before {
+    background-image: url(/gfx/parameters/rear.left.open.png);
+  }
+  .rear-right-open-parameter:before {
+    background-image: url(/gfx/parameters/rear.right.open.png);
+  }
+  .front-trunk-open-parameter:before {
+    background-image: url(/gfx/parameters/front.trunk.open.png);
+  }
+  .rear-trunk-open-parameter:before {
+    background-image: url(/gfx/parameters/rear.trunk.open.png);
+  }
+  .parking-brake-parameter:before {
+    background-image: url(/gfx/parameters/parking.brake.png);
+  }
+  .inservice-parameter:before {
+    background-image: url(/gfx/parameters/inservice.png);
+  }
+  .sleeping-parameter:before {
+    background-image: url(/gfx/parameters/sleeping.png);
+  }
+  .sunroof-open-parameter:before {
+    background-image: url(/gfx/parameters/sunroof.png);
+  }
+  .pin-parameter:before {
+    background-image: url(/gfx/parameters/pin.png);
+  }
+  .length-parameter:before {
+    background-image: url(/gfx/parameters/length.png);
+  }
+  .health-parameter:before {
+    background-image: url(/gfx/parameters/health.png);
+  }
+  .heading-parameter:before {
+    background-image: url(/gfx/parameters/heading.png);
+  }
+  .speed-parameter:before {
+    background-image: url(/gfx/parameters/speed.png);
+  }
+  .battery-parameter:before {
+    background-image: url(/gfx/parameters/battery.png);
+  }
+  .fuel-parameter:before {
+    background-image: url(/gfx/parameters/fuel.png);
+  }
+  .tirepressure-parameter:before {
+    background-image: url(/gfx/parameters/tirepressure.png);
+  }
+  .target-parameter:before {
+    background-image: url(/gfx/parameters/target.png);
+  }
+  .thermometer-parameter:before {
+    background-image: url(/gfx/parameters/thermometer.png);
+  }
+  .revolutions-parameter:before {
+    background-image: url(/gfx/parameters/revolutions.png);
+  }
+  .time-parameter:before {
+    background-image: url(/gfx/parameters/time.png);
+  }
+  .current-parameter:before {
+    background-image: url(/gfx/parameters/current.png);
+  }
+  .volts-parameter:before {
+    background-image: url(/gfx/parameters/volts.png);
+  }
+  .percent-parameter:before {
+    background-image: url(/gfx/parameters/percent.png);
+  }
+  .scalar-parameter:before {
+    background-image: url(/gfx/parameters/scalar.png);
+  }
+  .angle-parameter:before {
+    background-image: url(/gfx/parameters/angle.png);
+  }
+  .volume-parameter:before {
+    background-image: url(/gfx/parameters/volume.png);
+  }
+  .airflow-parameter:before {
+    background-image: url(/gfx/parameters/airflow.png);
+  }
+  .acceleration-parameter:before {
+    background-image: url(/gfx/parameters/acceleration.png);
+  }
+}
