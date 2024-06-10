@@ -60,7 +60,9 @@
   .angle-parameter:before,
   .volume-parameter:before,
   .airflow-parameter:before,
-  .acceleration-parameter:before {
+  .acceleration-parameter:before,
+  .window-left-parameter:before,
+  .window-right-parameter:before {
     border-radius: 4px;
     background-size: 18px;
     content: "";
@@ -175,5 +177,11 @@
   }
   .acceleration-parameter:before {
     background-image: url(/gfx/parameters/acceleration.png);
+  }
+  .window-left-parameter:before {
+    background-image: url(/gfx/parameters/window.left.png);
+  }
+  .window-right-parameter:before {
+    background-image: url(/gfx/parameters/window.left.png);
   }
 }
