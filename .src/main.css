@@ -4,12 +4,6 @@
 @layer utilities {
   .text-black {
     color: #262625;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; /* For Firefox */
-  }
-  .text-white {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; /* For Firefox */
   }
   .bg-dark {
     background-color: #262625;
