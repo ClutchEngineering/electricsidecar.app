@@ -1,500 +1,607 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Electric Sidecar - Vehicle repo status</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="apple-itunes-app" content="app-id=1663683832">
-  <meta name="description" content="Electric Sidecar vehicle repo statuses.">
-  <meta name="keywords" content="OBD-II, Electric Sidecar, trip logger, telematics, vehicle connectivity">
-  <link rel="stylesheet" href="/css/main.css">
-  <script>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_eDtYLUe7s9m2FdF3d1hsw8XXnG57yJNU4rLvbT0IXNV',{api_host:'https://eu.i.posthog.com'})
-  </script>
-  <script>
-    !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_eza3npfz93xw', {"aaid":"<AAID-HERE>","email":"<EMAIL-HERE>","externalId":"<EXTERNAL-ID-HERE>","idfa":"<IDFA-HERE>"});rdt('track', 'PageVisit');
-  </script>
+ <title>Electric Sidecar - Vehicle repo status</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="apple-itunes-app" content="app-id=1663683832">
+ <meta name="description" content="Electric Sidecar vehicle repo statuses.">
+ <meta name="keywords" content="OBD-II, Electric Sidecar, trip logger, telematics, vehicle connectivity">
+ <link rel="stylesheet" href="/css/main.css">
+ <script>
+  !function (t, e) { var o, n, p, r; e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) { function g(t, e) { var o = e.split("."); 2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } } (p = t.createElement("script")).type = "text/javascript", p.async = !0, p.src = s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r); var u = e; for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) { var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e }, u.people.toString = function () { return u.toString(1) + ".people (stub)" }, o = "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "), n = 0; n < o.length; n++)g(u, o[n]); e._i.push([i, s, a]) }, e.__SV = 1) }(document, window.posthog || []);
+  posthog.init('phc_eDtYLUe7s9m2FdF3d1hsw8XXnG57yJNU4rLvbT0IXNV', { api_host: 'https://eu.i.posthog.com' })
+ </script>
+ <script>
+  !function (w, d) { if (!w.rdt) { var p = w.rdt = function () { p.sendEvent ? p.sendEvent.apply(p, arguments) : p.callQueue.push(arguments) }; p.callQueue = []; var t = d.createElement("script"); t.src = "https://www.redditstatic.com/ads/pixel.js", t.async = !0; var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(t, s) } }(window, document); rdt('init', 'a2_eza3npfz93xw', { "aaid": "<AAID-HERE>", "email": "<EMAIL-HERE>", "externalId": "<EXTERNAL-ID-HERE>", "idfa": "<IDFA-HERE>" }); rdt('track', 'PageVisit');
+ </script>
 </head>
+
 <body class="bg-gray-100 antialiased">
-<main>
+ <main>
   <!-- Navigation bar -->
   <div class="container mx-auto px-2 md:px-0 font-sans">
-    <div class="py-2 border-b border-gray-300 flex justify-between items-center">
-      <a href="/" class="flex items-center opacity-70 hover:opacity-100 transition-opacity">
-        <img src="/gfx/site-logo.png" alt="Electric Sidecar logo" class="h-6 md:h-8 w-auto mr-1 md:mr-2">
-        <h1 class="font-rounded text-black text-sm md:text-base font-bold w-24 leading-none md:leading-tight">Electric Sidecar</h1>
-      </a>
+   <div class="py-2 border-b border-gray-300 flex justify-between items-center">
+    <a href="/" class="flex items-center opacity-70 hover:opacity-100 transition-opacity">
+     <img src="/gfx/site-logo.png" alt="Electric Sidecar logo" class="h-6 md:h-8 w-auto mr-1 md:mr-2">
+     <h1 class="font-rounded text-black text-sm md:text-base font-bold w-24 leading-none md:leading-tight">Electric
+      Sidecar</h1>
+    </a>
 
-      <nav class="flex items-center">
-        <a href="/shortcuts" class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Shortcuts</a>
-        <a href="/scanning" class="text text-sm md:text-base text-black font-semibold mr-4 transition-opacity">Scanning</a>
-        <a href="/privacy-policy" class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Privacy</a>
-        <a href="https://electricsidecar.substack.com/" class="text text-sm md:text-base text-black font-medium md:mr-4 opacity-70 hover:opacity-100 transition-opacity" target="_blank">News</a>
-        <a class="hidden md:block" href="https://apps.apple.com/app/apple-store/id1663683832?pt=21311&ct=Website&mt=8" target="_blank" rel="noopener noreferrer">
-          <img src="/gfx/AppStore.png" alt="Download Electric Sidecar from the App Store" style="max-height: 40px">
-        </a>
-      </nav>
-    </div>
+    <nav class="flex items-center">
+     <a href="/shortcuts"
+      class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Shortcuts</a>
+     <a href="/scanning" class="text text-sm md:text-base text-black font-semibold mr-4 transition-opacity">Scanning</a>
+     <a href="/privacy-policy"
+      class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Privacy</a>
+     <a href="https://electricsidecar.substack.com/"
+      class="text text-sm md:text-base text-black font-medium md:mr-4 opacity-70 hover:opacity-100 transition-opacity"
+      target="_blank">News</a>
+     <a class="hidden md:block" href="https://apps.apple.com/app/apple-store/id1663683832?pt=21311&ct=Website&mt=8"
+      target="_blank" rel="noopener noreferrer">
+      <img src="/gfx/AppStore.png" alt="Download Electric Sidecar from the App Store" style="max-height: 40px">
+     </a>
+    </nav>
+   </div>
   </div>
 
   <!-- Sub-navigation bar -->
   <div class="container mx-auto px-2 md:px-0 font-sans">
-    <div class="py-2 flex items-center">
-      <nav class="flex items-center ml-auto">
-        <a href="/scanning" class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Basics</a>
-        <a href="/scanning/extended-pids" class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Extended PIDs</a>
-        <a href="/scanning/repo-status" class="text text-sm md:text-base text-black font-semibold mr-4 transition-opacity">Vehicle support</a>
-      </nav>
-    </div>
+   <div class="py-2 flex items-center">
+    <nav class="flex items-center ml-auto">
+     <a href="/scanning"
+      class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Basics</a>
+     <a href="/scanning/extended-pids"
+      class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Extended
+      PIDs</a>
+     <a href="/scanning/repo-status"
+      class="text text-sm md:text-base text-black font-semibold mr-4 transition-opacity">Vehicle support</a>
+    </nav>
+   </div>
   </div>
 
   <!-- Hero -->
   <div class="container mx-auto text-black my-4 px-2 md:px-0">
-    <div class="text-center">
-      <h1 class="text-4xl font-bold font-rounded">Vehicle Support Status</h1>
-      <p class="mb-4">Electric Sidecar's vehicle support matrix</p>
-    </div>
+   <div class="text-center">
+    <h1 class="text-4xl font-bold font-rounded">Vehicle Support Status</h1>
+    <p class="mb-4">Electric Sidecar's vehicle support matrix</p>
+   </div>
   </div>
 
   <!-- Support matrix -->
   <div class="container mx-auto text-black my-4 px-2 md:px-0">
-    <table class="min-w-full bg-white border border-gray-200 rounded-lg">
-        <thead>
-            <tr class="bg-gray-200 text-left text-sm uppercase font-bold">
-                <th class="py-3 px-4 border-b">Vehicle Make</th>
-                <th class="py-3 px-4 border-b">Vehicle Model</th>
-                <th class="py-3 px-4 border-b">Build Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Audi -->
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b font-semibold">Audi</td>
-                <td class="py-3 px-4 border-b">e-tron</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Audi-e-tron">
-                        <img src="https://github.com/ElectricSidecar/Audi-e-tron/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- BMW -->
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b font-semibold" rowspan="3">BMW</td>
-                <td class="py-3 px-4 border-b">4-series</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/BMW-4-series">
-                        <img src="https://github.com/ElectricSidecar/BMW-4-series/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b">i4</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/BMW-i4">
-                        <img src="https://github.com/ElectricSidecar/BMW-i4/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b">iX3</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/BMW-iX3">
-                        <img src="https://github.com/ElectricSidecar/BMW-iX3/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- BYD -->
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b font-semibold" rowspan="2">BYD</td>
-                <td class="py-3 px-4 border-b">Atto 3</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/BYD-Atto-3">
-                        <img src="https://github.com/ElectricSidecar/BYD-Atto-3/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">Dolphin Mini</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/BYD-Dolphin-Mini">
-                        <img src="https://github.com/ElectricSidecar/BYD-Dolphin-Mini/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Chevrolet -->
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b font-semibold">Chevrolet</td>
-                <td class="py-3 px-4 border-b">Bolt EV</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Chevrolet-Bolt-EV">
-                        <img src="https://github.com/ElectricSidecar/Chevrolet-Bolt-EV/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Citroen -->
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b font-semibold" rowspan="2">Citroen</td>
-                <td class="py-3 px-4 border-b">CZero</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Citroen-CZero">
-                        <img src="https://github.com/ElectricSidecar/Citroen-CZero/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">E-C4</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Citroen-E-C4">
-                        <img src="https://github.com/ElectricSidecar/Citroen-E-C4/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Dodge -->
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b font-semibold">Dodge</td>
-                <td class="py-3 px-4 border-b">Challenger</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Dodge-Challenger">
-                        <img src="https://github.com/ElectricSidecar/Dodge-Challenger/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Ford -->
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b font-semibold" rowspan="2">Ford</td>
-                <td class="py-3 px-4 border-b">Escape</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Ford-Escape">
-                        <img src="https://github.com/ElectricSidecar/Ford-Escape/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">Mustang</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Ford-Mustang">
-                        <img src="https://github.com/ElectricSidecar/Ford-Mustang/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Honda -->
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b font-semibold">Honda</td>
-                <td class="py-3 px-4 border-b">M-NV</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Honda-M-NV">
-                        <img src="https://github.com/ElectricSidecar/Honda-M-NV/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Hyundai -->
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b font-semibold" rowspan="2">Hyundai</td>
-                <td class="py-3 px-4 border-b">IONIQ 5</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Hyundai-IONIQ-5">
-                        <img src="https://github.com/ElectricSidecar/Hyundai-IONIQ-5/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">Kona Electric</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Hyundai-Kona-Electric">
-                        <img src="https://github.com/ElectricSidecar/Hyundai-Kona-Electric/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Jeep -->
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b font-semibold">Jeep</td>
-                <td class="py-3 px-4 border-b">Wrangler</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Jeep-Wrangler">
-                        <img src="https://github.com/ElectricSidecar/Jeep-Wrangler/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Kia -->
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b font-semibold" rowspan="2">Kia</td>
-                <td class="py-3 px-4 border-b">EV9</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Kia-EV9">
-                        <img src="https://github.com/ElectricSidecar/Kia-EV9/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">Sportage HEV</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Kia-Sportage-HEV">
-                        <img src="https://github.com/ElectricSidecar/Kia-Sportage-HEV/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- MG -->
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b font-semibold">MG</td>
-                <td class="py-3 px-4 border-b">MG4</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/MG-MG4">
-                        <img src="https://github.com/ElectricSidecar/MG-MG4/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Mercedes-Benz -->
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b font-semibold" rowspan="2">Mercedes-Benz</td>
-                <td class="py-3 px-4 border-b">EQS Class Sedan</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Mercedes-Benz-EQS-Class-Sedan">
-                        <img src="https://github.com/ElectricSidecar/Mercedes-Benz-EQS-Class-Sedan/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">S Class</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Mercedes-Benz-S-Class">
-                        <img src="https://github.com/ElectricSidecar/Mercedes-Benz-S-Class/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Mitsubishi -->
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b font-semibold">Mitsubishi</td>
-                <td class="py-3 px-4 border-b">Outlander PHEV</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Mitsubishi-Outlander-PHEV">
-                        <img src="https://github.com/ElectricSidecar/Mitsubishi-Outlander-PHEV/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Nissan -->
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b font-semibold" rowspan="2">Nissan</td>
-                <td class="py-3 px-4 border-b">Juke</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Nissan-Juke">
-                        <img src="https://github.com/ElectricSidecar/Nissan-Juke/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">Leaf</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Nissan-Leaf">
-                        <img src="https://github.com/ElectricSidecar/Nissan-Leaf/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Opel -->
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b font-semibold">Opel</td>
-                <td class="py-3 px-4 border-b">Corsa</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Opel-Corsa">
-                        <img src="https://github.com/ElectricSidecar/Opel-Corsa/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Porsche -->
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b font-semibold" rowspan="8">Porsche</td>
-                <td class="py-3 px-4 border-b">911</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Porsche-911">
-                        <img src="https://github.com/ElectricSidecar/Porsche-911/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">718</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Porsche-718">
-                        <img src="https://github.com/ElectricSidecar/Porsche-718/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">718 Boxster</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Porsche-718-Boxster">
-                        <img src="https://github.com/ElectricSidecar/Porsche-718-Boxster/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">Cayenne</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Porsche-Cayenne">
-                        <img src="https://github.com/ElectricSidecar/Porsche-Cayenne/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">Cayman</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Porsche-Cayman">
-                        <img src="https://github.com/ElectricSidecar/Porsche-Cayman/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">Macan</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Porsche-Macan">
-                        <img src="https://github.com/ElectricSidecar/Porsche-Macan/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">Panamera</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Porsche-Panamera">
-                        <img src="https://github.com/ElectricSidecar/Porsche-Panamera/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">Taycan</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Porsche-Taycan">
-                        <img src="https://github.com/ElectricSidecar/Porsche-Taycan/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Ram -->
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b font-semibold">Ram</td>
-                <td class="py-3 px-4 border-b">1500</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Ram-1500">
-                        <img src="https://github.com/ElectricSidecar/Ram-1500/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Rivian -->
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b font-semibold">Rivian</td>
-                <td class="py-3 px-4 border-b">R1T</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Rivian-R1T">
-                        <img src="https://github.com/ElectricSidecar/Rivian-R1T/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Tesla -->
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b font-semibold" rowspan="4">Tesla</td>
-                <td class="py-3 px-4 border-b">Model 3</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Tesla-Model-3">
-                        <img src="https://github.com/ElectricSidecar/Tesla-Model-3/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b">Model S</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Tesla-Model-S">
-                        <img src="https://github.com/ElectricSidecar/Tesla-Model-S/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b">Model X</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Tesla-Model-X">
-                        <img src="https://github.com/ElectricSidecar/Tesla-Model-X/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b">Model Y</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Tesla-Model-Y">
-                        <img src="https://github.com/ElectricSidecar/Tesla-Model-Y/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Toyota -->
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b font-semibold" rowspan="5">Toyota</td>
-                <td class="py-3 px-4 border-b">4Runner</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Toyota-4Runner">
-                        <img src="https://github.com/ElectricSidecar/Toyota-4Runner/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">Avalon</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Toyota-Avalon">
-                        <img src="https://github.com/ElectricSidecar/Toyota-Avalon/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">Camry</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Toyota-Camry">
-                        <img src="https://github.com/ElectricSidecar/Toyota-Camry/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">Ist</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Toyota-Ist">
-                        <img src="https://github.com/ElectricSidecar/Toyota-Ist/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b">RAV4</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Toyota-RAV4">
-                        <img src="https://github.com/ElectricSidecar/Toyota-RAV4/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Volvo -->
-            <tr class="bg-gray-100">
-                <td class="py-3 px-4 border-b font-semibold">Volvo</td>
-                <td class="py-3 px-4 border-b">XC40 Recharge</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Volvo-XC40-Recharge">
-                        <img src="https://github.com/ElectricSidecar/Volvo-XC40-Recharge/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-            <!-- Voyah -->
-            <tr class="bg-gray-50">
-                <td class="py-3 px-4 border-b font-semibold">Voyah</td>
-                <td class="py-3 px-4 border-b">Free</td>
-                <td class="py-3 px-4 border-b">
-                    <a href="https://github.com/ElectricSidecar/Voyah-Free">
-                        <img src="https://github.com/ElectricSidecar/Voyah-Free/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo" alt="Build Status">
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+   <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+    <thead>
+     <tr class="bg-gray-200 text-left text-sm uppercase font-bold">
+      <th class="py-3 px-4 border-b">Vehicle Make</th>
+      <th class="py-3 px-4 border-b">Vehicle Model</th>
+      <th class="py-3 px-4 border-b">Build Status</th>
+     </tr>
+    </thead>
+    <tbody>
+     <!-- Audi -->
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b font-semibold">Audi</td>
+      <td class="py-3 px-4 border-b">e-tron</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Audi-e-tron">
+        <img
+         src="https://github.com/ElectricSidecar/Audi-e-tron/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- BMW -->
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b font-semibold" rowspan="3">BMW</td>
+      <td class="py-3 px-4 border-b">4-series</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/BMW-4-series">
+        <img
+         src="https://github.com/ElectricSidecar/BMW-4-series/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b">i4</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/BMW-i4">
+        <img
+         src="https://github.com/ElectricSidecar/BMW-i4/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b">iX3</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/BMW-iX3">
+        <img
+         src="https://github.com/ElectricSidecar/BMW-iX3/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- BYD -->
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b font-semibold" rowspan="2">BYD</td>
+      <td class="py-3 px-4 border-b">Atto 3</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/BYD-Atto-3">
+        <img
+         src="https://github.com/ElectricSidecar/BYD-Atto-3/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">Dolphin Mini</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/BYD-Dolphin-Mini">
+        <img
+         src="https://github.com/ElectricSidecar/BYD-Dolphin-Mini/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Chevrolet -->
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b font-semibold">Chevrolet</td>
+      <td class="py-3 px-4 border-b">Bolt EV</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Chevrolet-Bolt-EV">
+        <img
+         src="https://github.com/ElectricSidecar/Chevrolet-Bolt-EV/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Citroen -->
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b font-semibold" rowspan="2">Citroen</td>
+      <td class="py-3 px-4 border-b">CZero</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Citroen-CZero">
+        <img
+         src="https://github.com/ElectricSidecar/Citroen-CZero/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">E-C4</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Citroen-E-C4">
+        <img
+         src="https://github.com/ElectricSidecar/Citroen-E-C4/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Dodge -->
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b font-semibold">Dodge</td>
+      <td class="py-3 px-4 border-b">Challenger</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Dodge-Challenger">
+        <img
+         src="https://github.com/ElectricSidecar/Dodge-Challenger/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Ford -->
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b font-semibold" rowspan="2">Ford</td>
+      <td class="py-3 px-4 border-b">Escape</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Ford-Escape">
+        <img
+         src="https://github.com/ElectricSidecar/Ford-Escape/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">Mustang</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Ford-Mustang">
+        <img
+         src="https://github.com/ElectricSidecar/Ford-Mustang/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Honda -->
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b font-semibold">Honda</td>
+      <td class="py-3 px-4 border-b">M-NV</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Honda-M-NV">
+        <img
+         src="https://github.com/ElectricSidecar/Honda-M-NV/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Hyundai -->
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b font-semibold" rowspan="2">Hyundai</td>
+      <td class="py-3 px-4 border-b">IONIQ 5</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Hyundai-IONIQ-5">
+        <img
+         src="https://github.com/ElectricSidecar/Hyundai-IONIQ-5/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">Kona Electric</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Hyundai-Kona-Electric">
+        <img
+         src="https://github.com/ElectricSidecar/Hyundai-Kona-Electric/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Jeep -->
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b font-semibold">Jeep</td>
+      <td class="py-3 px-4 border-b">Wrangler</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Jeep-Wrangler">
+        <img
+         src="https://github.com/ElectricSidecar/Jeep-Wrangler/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Kia -->
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b font-semibold" rowspan="2">Kia</td>
+      <td class="py-3 px-4 border-b">EV9</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Kia-EV9">
+        <img
+         src="https://github.com/ElectricSidecar/Kia-EV9/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">Sportage HEV</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Kia-Sportage-HEV">
+        <img
+         src="https://github.com/ElectricSidecar/Kia-Sportage-HEV/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- MG -->
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b font-semibold">MG</td>
+      <td class="py-3 px-4 border-b">MG4</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/MG-MG4">
+        <img
+         src="https://github.com/ElectricSidecar/MG-MG4/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Mercedes-Benz -->
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b font-semibold" rowspan="2">Mercedes-Benz</td>
+      <td class="py-3 px-4 border-b">EQS Class Sedan</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Mercedes-Benz-EQS-Class-Sedan">
+        <img
+         src="https://github.com/ElectricSidecar/Mercedes-Benz-EQS-Class-Sedan/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">S Class</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Mercedes-Benz-S-Class">
+        <img
+         src="https://github.com/ElectricSidecar/Mercedes-Benz-S-Class/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Mitsubishi -->
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b font-semibold">Mitsubishi</td>
+      <td class="py-3 px-4 border-b">Outlander PHEV</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Mitsubishi-Outlander-PHEV">
+        <img
+         src="https://github.com/ElectricSidecar/Mitsubishi-Outlander-PHEV/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Nissan -->
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b font-semibold" rowspan="2">Nissan</td>
+      <td class="py-3 px-4 border-b">Juke</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Nissan-Juke">
+        <img
+         src="https://github.com/ElectricSidecar/Nissan-Juke/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">Leaf</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Nissan-Leaf">
+        <img
+         src="https://github.com/ElectricSidecar/Nissan-Leaf/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Opel -->
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b font-semibold">Opel</td>
+      <td class="py-3 px-4 border-b">Corsa</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Opel-Corsa">
+        <img
+         src="https://github.com/ElectricSidecar/Opel-Corsa/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Porsche -->
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b font-semibold" rowspan="8">Porsche</td>
+      <td class="py-3 px-4 border-b">911</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Porsche-911">
+        <img
+         src="https://github.com/ElectricSidecar/Porsche-911/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">718</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Porsche-718">
+        <img
+         src="https://github.com/ElectricSidecar/Porsche-718/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">718 Boxster</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Porsche-718-Boxster">
+        <img
+         src="https://github.com/ElectricSidecar/Porsche-718-Boxster/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">Cayenne</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Porsche-Cayenne">
+        <img
+         src="https://github.com/ElectricSidecar/Porsche-Cayenne/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">Cayman</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Porsche-Cayman">
+        <img
+         src="https://github.com/ElectricSidecar/Porsche-Cayman/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">Macan</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Porsche-Macan">
+        <img
+         src="https://github.com/ElectricSidecar/Porsche-Macan/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">Panamera</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Porsche-Panamera">
+        <img
+         src="https://github.com/ElectricSidecar/Porsche-Panamera/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">Taycan</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Porsche-Taycan">
+        <img
+         src="https://github.com/ElectricSidecar/Porsche-Taycan/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Ram -->
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b font-semibold">Ram</td>
+      <td class="py-3 px-4 border-b">1500</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Ram-1500">
+        <img
+         src="https://github.com/ElectricSidecar/Ram-1500/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Rivian -->
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b font-semibold">Rivian</td>
+      <td class="py-3 px-4 border-b">R1T</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Rivian-R1T">
+        <img
+         src="https://github.com/ElectricSidecar/Rivian-R1T/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Tesla -->
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b font-semibold" rowspan="4">Tesla</td>
+      <td class="py-3 px-4 border-b">Model 3</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Tesla-Model-3">
+        <img
+         src="https://github.com/ElectricSidecar/Tesla-Model-3/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b">Model S</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Tesla-Model-S">
+        <img
+         src="https://github.com/ElectricSidecar/Tesla-Model-S/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b">Model X</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Tesla-Model-X">
+        <img
+         src="https://github.com/ElectricSidecar/Tesla-Model-X/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b">Model Y</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Tesla-Model-Y">
+        <img
+         src="https://github.com/ElectricSidecar/Tesla-Model-Y/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Toyota -->
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b font-semibold" rowspan="5">Toyota</td>
+      <td class="py-3 px-4 border-b">4Runner</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Toyota-4Runner">
+        <img
+         src="https://github.com/ElectricSidecar/Toyota-4Runner/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">Avalon</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Toyota-Avalon">
+        <img
+         src="https://github.com/ElectricSidecar/Toyota-Avalon/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">Camry</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Toyota-Camry">
+        <img
+         src="https://github.com/ElectricSidecar/Toyota-Camry/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">Ist</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Toyota-Ist">
+        <img
+         src="https://github.com/ElectricSidecar/Toyota-Ist/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b">RAV4</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Toyota-RAV4">
+        <img
+         src="https://github.com/ElectricSidecar/Toyota-RAV4/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Volvo -->
+     <tr class="bg-gray-100">
+      <td class="py-3 px-4 border-b font-semibold">Volvo</td>
+      <td class="py-3 px-4 border-b">XC40 Recharge</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Volvo-XC40-Recharge">
+        <img
+         src="https://github.com/ElectricSidecar/Volvo-XC40-Recharge/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+     <!-- Voyah -->
+     <tr class="bg-gray-50">
+      <td class="py-3 px-4 border-b font-semibold">Voyah</td>
+      <td class="py-3 px-4 border-b">Free</td>
+      <td class="py-3 px-4 border-b">
+       <a href="https://github.com/ElectricSidecar/Voyah-Free">
+        <img
+         src="https://github.com/ElectricSidecar/Voyah-Free/actions/workflows/json-yaml-validate.yml/badge.svg?label=foo"
+         alt="Build Status">
+       </a>
+      </td>
+     </tr>
+    </tbody>
+   </table>
   </div>
 
   <footer class="bg-dark text-white py-8">
-    <div class="container mx-auto px-4">
-        <div class="text-left">
-            <p class="mb-4">Apple Watch, watchOS and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries and regions.</p>
-            <p class="mb-4">Third party logos and brand names are used for information purposes only and do not necessarily indicate affiliation with Electric Sidecar.</p>
-            <p>Copyright © 2024 fearless design, LLC. All rights reserved.</p>
-        </div>
+   <div class="container mx-auto px-4">
+    <div class="text-left">
+     <p class="mb-4">Apple Watch, watchOS and iPhone are trademarks of Apple Inc., registered in the U.S. and other
+      countries and regions.</p>
+     <p class="mb-4">Third party logos and brand names are used for information purposes only and do not necessarily
+      indicate affiliation with Electric Sidecar.</p>
+     <p>Copyright © 2024 fearless design, LLC. All rights reserved.</p>
     </div>
+   </div>
   </footer>
-</main>
+ </main>
 </body>
+
 </html>
