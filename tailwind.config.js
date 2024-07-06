@@ -9,6 +9,9 @@ module.exports = {
     "./shortcuts/*.html"
   ],
   theme: {
+    fontFamily: {
+      'rounded': ['ui-rounded', '-apple-system', 'system-ui', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif']
+    },
     container: {
       center: true,
       screens: {

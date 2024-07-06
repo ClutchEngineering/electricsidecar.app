@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 @layer utilities {
-  .font-rounded {
-    font-family: ui-rounded,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  }
   .text-black {
     color: #262625;
     -webkit-font-smoothing: antialiased;
