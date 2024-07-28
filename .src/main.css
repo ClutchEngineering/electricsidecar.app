@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 @layer utilities {
+  .puck {
+    box-shadow: 0 0 4px 0 rgb(0 0 0 / 0.2), 0 2px 0px 0px rgb(0 0 0 / 0.1)
+  }
+  .text-primary {
+    color: #262625;
+  }
   .text-black {
     color: #262625;
   }

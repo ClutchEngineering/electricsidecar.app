@@ -1,571 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
- <title>Electric Sidecar - Automotive assistant for iOS</title>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta name="apple-itunes-app" content="app-id=1663683832">
- <meta name="description" content="Your personal automotive assistant. Your journey, your data.">
- <meta name="keywords" content="OBD-II, Electric Sidecar, trip logger, telematics, vehicle connectivity">
- <meta property="og:image" content="/gfx/appicon.png" />
- <link rel="stylesheet" href="/css/main.css">
- <script>
-  !function (t, e) { var o, n, p, r; e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) { function g(t, e) { var o = e.split("."); 2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } } (p = t.createElement("script")).type = "text/javascript", p.async = !0, p.src = s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r); var u = e; for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) { var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e }, u.people.toString = function () { return u.toString(1) + ".people (stub)" }, o = "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "), n = 0; n < o.length; n++)g(u, o[n]); e._i.push([i, s, a]) }, e.__SV = 1) }(document, window.posthog || []);
-  posthog.init('phc_eDtYLUe7s9m2FdF3d1hsw8XXnG57yJNU4rLvbT0IXNV', { api_host: 'https://eu.i.posthog.com' })
- </script>
-</head>
-
-<body class="bg-gray-100 antialiased">
- <main>
-  <!-- Navigation bar -->
-  <div class="container mx-auto px-2 md:px-0 font-sans">
-   <div class="py-2 border-b border-gray-300 flex justify-between items-center">
-    <a href="/" class="flex items-center opacity-70 hover:opacity-100 transition-opacity">
-     <img src="/gfx/site-logo.png" alt="Electric Sidecar logo" class="h-6 md:h-8 w-auto mr-1 md:mr-2">
-     <h1 class="font-rounded text-black text-sm md:text-base font-bold w-24 leading-none md:leading-tight">Electric
-      Sidecar</h1>
-    </a>
-
-    <nav class="flex items-center">
-     <a href="/shortcuts"
-      class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Shortcuts</a>
-     <a href="/scanning"
-      class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Scanning</a>
-     <a href="/privacy-policy"
-      class="text text-sm md:text-base text-black font-medium mr-4 opacity-70 hover:opacity-100 transition-opacity">Privacy</a>
-     <a href="https://electricsidecar.substack.com/"
-      class="text text-sm md:text-base text-black font-medium md:mr-4 opacity-70 hover:opacity-100 transition-opacity">News</a>
-     <a class="hidden md:block appstorelink"
-      href="https://apps.apple.com/app/apple-store/id1663683832?pt=21311&ct=Website&mt=8" target="_blank"
-      rel="noopener noreferrer">
-      <img src="/gfx/AppStore.png" alt="Download Electric Sidecar from the App Store" style="max-height: 40px">
-     </a>
-    </nav>
-   </div>
-  </div>
-
-  <!-- Hero -->
-  <div class="text-black py-4">
-   <div class="container mx-auto px-4 text-center">
-    <img src="/gfx/appicon.png" alt="Electric Sidecar app icon" class="h-32 w-auto mx-auto mb-4">
-
-    <h1 class="text-4xl font-bold font-rounded">Electric Sidecar</h1>
-    <p class="mb-4 text-xl md:text-2xl">Your personal automotive assistant</p>
-
-    <p class="mb-4 text-xl md:text-2xl leading-tight">Stay in tune with your vehicle <span class="block">both on and
-      off the road</span></p>
-
-    <a class="md:hidden appstorelink" href="https://apps.apple.com/us/app/electric-sidecar/id1663683832" target="_blank"
-     rel="noopener noreferrer">
-     <img class="mx-auto mb-4" src="/gfx/AppStore.png" alt="Download Electric Sidecar from the App Store"
-      style="max-height: 40px">
-    </a>
-
-    <p class="mb-4 mx-auto">
-     <a href="https://discord.gg/9QhpesqTSM"><img class="mx-auto"
-       src="https://dcbadge.limes.pink/api/server/https://discord.gg/9QhpesqTSM?style=plastic"></a>
-    </p>
-   </div>
-  </div>
-
-  <!-- Focus on the journey -->
-  <div class="bg-dark text-white py-12">
-   <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-between">
-    <div class="mb-8 lg:mb-0 lg:w-1/2">
-     <img src="/gfx/hero.png"
-      alt="Electric Sidecar running on an iPhone with features like battery history and trip efficiency statistics"
-      class="mx-auto lg:mx-0">
+ <head>
+  <title>Your personal automotive assistant - Electric Sidecar</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="apple-itunes-app" content="app-id=1663683832" />
+  <meta name="description" content="OBD scanner / trip logger for iOS. Your personal automotive assistant. Your journey, your data." />
+  <meta name="keywords" content="OBD-II, car scanner, trip logger, vehicle connectivity, vehicle diagnostics" />
+  <meta property="og:image" content="/gfx/appicon.png" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <script>!function (t, e) { var o, n, p, r; e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) { function g(t, e) { var o = e.split("."); 2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } } (p = t.createElement("script")).type = "text/javascript", p.async = !0, p.src = s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r); var u = e; for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) { var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e }, u.people.toString = function () { return u.toString(1) + ".people (stub)" }, o = "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "), n = 0; n < o.length; n++)g(u, o[n]); e._i.push([i, s, a]) }, e.__SV = 1) }(document, window.posthog || []);
+posthog.init('phc_eDtYLUe7s9m2FdF3d1hsw8XXnG57yJNU4rLvbT0IXNV', { api_host: 'eu' })</script>
+ </head>
+ <body class="bg-gray-100 antialiased">
+  <main>
+   <!-- Navigation bar -->
+   <div class="container mx-auto px-2 md:px-0">
+    <div class="py-2 border-b border-gray-300 flex justify-between text-primary">
+     <a href="/" class="flex items-center opacity-70 hover:opacity-100 transition-opacity"><img src="/gfx/site-logo.png" alt="Electric Sidecar logo" class="h-6 md:h-8 mr-1 md:mr-2" /><h1 class="font-rounded text-sm md:text-base font-bold w-24 leading-none md:leading-tight">Electric Sidecar</h1></a>
+     <nav class="flex items-center">
+      <a href="/shortcuts" class="text-sm md:text-base font-medium mr-4 opacity-70 hover:opacity-100">Shortcuts</a>
+      <a href="/scanning" class="text-sm md:text-base font-medium mr-4 opacity-70 hover:opacity-100">Scanning</a>
+      <a href="/privacy-policy" class="text-sm md:text-base font-medium mr-4 opacity-70 hover:opacity-100">Privacy</a>
+      <a href="https://electricsidecar.substack.com/" class="text-sm md:text-base font-medium mr-4 opacity-70 hover:opacity-100">News</a>
+      <a href="https://apps.apple.com/us/app/electric-sidecar/id1663683832" target="_blank" class="hidden md:block"><img src="/gfx/AppStore.png" alt="Download Electric Sidecar from the App Store" class="max-h-10" /></a>
+     </nav>
     </div>
-
-    <div class="text-right lg:w-1/2">
-     <h2 class="text-3xl font-bold font-rounded mb-2">Focus on the journey</h2>
-     <h3 class="text-xl font-rounded mb-6">Let Electric Sidecar do the rest</h3>
-     <img src="/gfx/journey.png" alt="Car Image" class="mx-auto mb-8 -mt-20 md:-mt-24">
-     <div class="flex justify-center lg:justify-start -mt-12">
-      <img src="/gfx/hero-watch-1.png" alt="Apple Watch Mockup" class="h-40 md:h-60 w-auto -mt-24">
-      <img src="/gfx/hero-watch-2.png" alt="Apple Watch Mockup" class="h-40 md:h-60 w-auto -ml-10 -mt-12">
-      <img src="/gfx/hero-watch-3.png" alt="Apple Watch Mockup" class="h-40 md:h-60 w-auto -ml-10">
+   </div>
+   <!-- Hero -->
+   <div class="container mx-auto px-2 md:px-0">
+    <div class="py-4 text-center text-primary">
+     <img src="/gfx/appicon.gif" alt="Electric Sidecar app icon" class="h-28 w-auto mx-auto mt-2 mb-6 rounded-3xl puck border-4 border-white" />
+     <h1 class="text-4xl font-bold font-rounded">Electric Sidecar</h1>
+     <p class="text-xl md:text-2xl mb-4">Your personal automotive assistant</p>
+     <p class="text-xl md:text-2xl mb-4">Stay in tune with your vehicle<span class="block">both on and off the road</span></p>
+     <a href="https://apps.apple.com/us/app/electric-sidecar/id1663683832" target="_blank" class="flex justify-center mb-4 md:hidden"><img src="/gfx/AppStore.png" alt="Download Electric Sidecar from the App Store" class="max-h-10" /></a>
+     <a href="https://discord.gg/9QhpesqTSM" class="flex justify-center mb-4"><img src="https://dcbadge.limes.pink/api/server/https://discord.gg/9QhpesqTSM?style=plastic" /></a>
+    </div>
+   </div>
+   <!-- Focus on the journey -->
+   <div class="bg-dark text-white">
+    <div class="container mx-auto px-2 md:px-0 flex justify-between items-center flex-col md:flex md:flex-row py-12">
+     <div class="px-4 mb-8 md:mb-0 md:w-1/2">
+      <img src="/gfx/hero.png" alt="Electric Sidecar running on an iPhone with features like battery history and trip efficiency statistics" />
+     </div>
+     <div class="md:w-1/2 text-right">
+      <h2 class="text-3xl font-bold font-rounded mb-2">Focus on the journey</h2>
+      <h3 class="text-2xl font-rounded mb-6">Let Electric Sidecar do the rest</h3>
+      <img src="/gfx/journey.png" alt="Electric Sidecar's vehicle screen, Porsche Taycan with 88% charge, battery history widget and recent trip details" class="mb-8 -mt-20 md:-mt-24" />
+      <div class="flex justify-center md:justify-start">
+       <img src="/gfx/hero-watch-1.png" alt="Read tire pressure from your Apple Watch" class="h-32 md:h-48 -mt-24" />
+       <img src="/gfx/hero-watch-2.png" alt="See the state of multiple vehicles on your Apple Watch" class="h-32 md:h-48 -mt-12" />
+       <img src="/gfx/hero-watch-3.png" alt="Run commands for Connected Accounts from your Apple Watch" class="h-32 md:h-48" />
+      </div>
      </div>
     </div>
    </div>
-  </div>
-
-  <div class="text-black py-12">
-   <div class="container mx-auto px-4 pb-12 text-center">
-    <h1 class="text-4xl font-bold font-rounded">Features at a glance</h1>
-   </div>
-
-   <div class="container mx-auto px-2 lg:px-4 grid lg:grid-cols-4 gap-4">
-    <!-- 2x2 Tile -->
-    <div class="col-span-2 row-span-2 bg-white px-4 lg:px-6 rounded-lg shadow-md">
-     <div class="py-4 lg:pt-6">
-      <div class="flex justify-between items-center">
-       <img src="/gfx/symbols/obdii.plug.filled.png" alt="OBD plug required" width="32px">
+   <!-- Features at a glance -->
+   <div class="container mx-auto px-2 md:px-0 py-12 text-primary">
+    <h1 class="text-4xl font-bold font-rounded mb-12 text-center">Features at a glance</h1>
+    <div class="grid gap-4 md:grid-cols-4 items-start md:px-4">
+     <div class="puck overflow-hidden rounded-xl bg-white col-span-2 row-span-2">
+      <div class="flex justify-between items-center p-4 md:pt-6 md:pl-6 md:pr-6 md:pb-5">
+       <img src="/gfx/symbols/obdii.plug.filled.png" alt="OBD plug required" class="w-12" />
        <div>
-        <h3 class="lg:text-lg font-semibold">Easy to understand OBD diagnostics</h3>
+        <h2 class="md:text-lg font-semibold">Easy to understand OBD diagnostics</h2>
         <p class="text-gray-600">Unlock your car's data.</p>
        </div>
       </div>
+      <img src="/gfx/dtcs.png" alt="Read diagnostic information from your car" class="max-w-96 mx-auto" />
      </div>
-     <img src="/gfx/dtcs.png" alt="Read diagnostic information from your car" class="mx-auto lg:bottom-0" width="359px">
-    </div>
-    <!-- 2x1 Tile -->
-    <div class="col-span-2 row-span-1 bg-white p-4 lg:p-6 rounded-lg shadow-md">
-     <div class="flex justify-between items-center">
-      <div>
-       <h3 class="text-lg font-semibold">Thoughtfully accessible</h3>
-       <p class="text-gray-600">Optimized for your needs.</p>
-      </div>
-      <img src="/gfx/symbols/circle.righthalf.filled.png" alt="Dark Mode" width="28px">
-      <img src="/gfx/symbols/textformat.size.png" alt="Dynamic Type" width="28px">
-      <img src="/gfx/symbols/accessibility.png" alt="Accessible by design" width="28px">
-     </div>
-    </div>
-    <!-- 1x1 Tile -->
-    <div class="col-span-1 row-span-1 bg-white px-4 pt-4 lg:px-6 lg:pt-6 rounded-lg shadow-md flex flex-col">
-     <div class="flex justify-between items-center">
-      <h3 class="lg:text-lg font-semibold">iCloud sync</h3>
-      <img src="/gfx/symbols/icloud.png" alt="Sync your private data securely via iCloud" width="24px">
-     </div>
-     <div class="flex-grow flex items-center justify-center">
-      <img src="/gfx/devices.png" alt="Sync across iPhone, iPad, and Apple Watch" class="mx-auto" width="300px">
-     </div>
-    </div>
-    <!-- 1x1 Tile -->
-    <div class="col-span-1 row-span-1 rounded-lg">
-     <div class="px-2 lg:px-3 pt-4 lg:pt-6 pb-3">
-      <div class="flex justify-between items-center">
-       <img src="/gfx/symbols/map.fill.png" alt="Trip logging" width="24px">
-       <h3 class="lg:text-lg font-semibold">All day trip logs</h3>
-      </div>
-     </div>
-     <img src="/gfx/map.png" alt="Automatic trip logging">
-    </div>
-    <!-- 2x1 Tile -->
-    <div class="col-span-2 row-span-1 bg-white p-4 lg:p-6 rounded-lg shadow-md">
-     <div class="flex justify-between items-center">
-      <h3 class="lg:text-lg font-semibold">Detailed trip statistics and widgets</h3>
-      <img src="/gfx/symbols/chart.bar.xaxis.png" alt="Charts and graphs" width="24px">
-     </div>
-     <p class="mt-2 text-gray-600">Personalize your driving experience with customizable widgets.</p>
-    </div>
-    <!-- 2x1 Tile -->
-    <div class="lg:relative col-span-2 row-span-2 rounded-lg shadow-md"
-     style="overflow: hidden; background-color: #0B0B0B; background: linear-gradient(180deg, #0B0B0B 0%, #CFD6E0 100%);">
-     <img src="/gfx/tripwidget.png" alt="Intuitive trip statistics created automatically"
-      class="lg:absolute lg:bottom-0">
-    </div>
-    <!-- 2x1 Tile -->
-    <div class="col-span-2 row-span-1 bg-white rounded-lg shadow-md" style="overflow: hidden">
-     <img src="/gfx/lockscreen.png" alt="Lockscreen widgets">
-    </div>
-    <!-- 1x1 Tile -->
-    <div class="col-span-1 row-span-1 bg-white p-4 lg:p-6 rounded-lg shadow-md">
-     <div class="flex justify-between items-center">
-      <h3 class="lg:text-lg font-semibold">Recalls</h3>
-      <img src="/gfx/symbols/exclamationmark.triangle.fill.png" alt="Recall notices" width="24px">
-     </div>
-     <p class="mt-2 text-gray-600">Stay aware of vehicle safety issues.</p>
-    </div>
-    <!-- 1x1 Tile -->
-    <div class="col-span-1 row-span-1 bg-white p-4 lg:p-6 rounded-lg shadow-md">
-     <div class="flex justify-between items-center">
-      <h3 class="lg:text-lg font-semibold">Documents</h3>
-      <img src="/gfx/symbols/text.stamp.on.text.rectangle.angled.fill.badge.plus.png" alt="Recall notices" width="36px">
-     </div>
-     <p class="mt-2 text-gray-600">Digitize your glovebox with on-device intelligence.</p>
-    </div>
-    <!-- 2x2 Tile -->
-    <div class="lg:relative col-span-2 row-span-2 bg-white px-4 lg:px-6 rounded-lg shadow-md">
-     <div class="pt-4 lg:pt-6 pb-3">
-      <div class="flex justify-between items-center">
+     <div class="puck overflow-hidden rounded-xl bg-white col-span-2 row-span-1">
+      <div class="flex justify-between items-center p-4 md:p-6">
        <div>
-        <h3 class="lg:text-lg font-semibold">Powerful OBD terminal</h3>
+        <h2 class="md:text-lg font-semibold">Thoughtfully accessible</h2>
+        <p class="text-gray-600">Optimized for your needs.</p>
+       </div>
+       <img src="/gfx/symbols/circle.righthalf.filled.png" alt="Dark Mode" class="w-7" />
+       <img src="/gfx/symbols/textformat.size.png" alt="Dynamic Type" class="w-7" />
+       <img src="/gfx/symbols/accessibility.png" alt="Accessible by design" class="w-7" />
+      </div>
+     </div>
+     <div class="puck overflow-hidden rounded-xl bg-white col-span-1 row-span-1 p-4 md:p-6 flex flex-col">
+      <div class="flex justify-between items-center">
+       <h2 class="md:text-lg font-semibold">iCloud sync</h2>
+       <img src="/gfx/symbols/icloud.png" alt="Sync your private data securely via iCloud" class="w-7" />
+      </div>
+      <div class="flex-grow flex justify-center items-center">
+       <img src="/gfx/devices.png" alt="Sync across iPhone, iPad, and Apple Watch" />
+      </div>
+     </div>
+     <div class="col-span-1 row-span-1 flex flex-col">
+      <div class="flex justify-between items-center px-2 md:px-3 pt-4 md:pt-6 pb-3">
+       <img src="/gfx/symbols/map.fill.png" alt="Trip logging" class="w-7" />
+       <h2 class="md:text-lg font-semibold">All day trip logs</h2>
+      </div>
+      <div class="flex-grow flex justify-center items-bottom">
+       <img src="/gfx/map.png" alt="Sync across iPhone, iPad, and Apple Watch" />
+      </div>
+     </div>
+     <div class="puck overflow-hidden rounded-xl bg-white col-span-2 row-span-1">
+      <div class="p-4 md:p-6">
+       <div class="flex justify-between items-center">
+        <h2 class="md:text-lg font-semibold">Detailed trip statistics and widgets</h2>
+        <img src="/gfx/symbols/chart.bar.xaxis.png" alt="Charts and graphs" class="w-7" />
+       </div>
+       <p class="text-gray-600">Personalize your driving experience with customizable widgets.</p>
+      </div>
+     </div>
+     <div class="puck overflow-hidden rounded-xl bg-white col-span-2 row-span-2 flex flex-col-reverse" style="background-color: #0B0B0B; background: linear-gradient(180deg, #0B0B0B 0%, #CFD6E0 100%)">
+      <img src="/gfx/tripwidget.png" alt="Intuitive trip statistics created automatically" />
+     </div>
+     <div class="puck overflow-hidden rounded-xl bg-white col-span-2 row-span-1">
+      <img src="/gfx/lockscreen.png" alt="wi" />
+     </div>
+     <div class="puck overflow-hidden rounded-xl bg-white col-span-1 row-span-1">
+      <div class="p-4 md:p-6">
+       <div class="flex justify-between items-center">
+        <h2 class="md:text-lg font-semibold">Recalls</h2>
+        <img src="/gfx/symbols/exclamationmark.triangle.fill.png" alt="Recall notices" class="w-6" />
+       </div>
+       <p class="text-gray-600">Stay aware of vehicle safety issues.</p>
+      </div>
+     </div>
+     <div class="puck overflow-hidden rounded-xl bg-white col-span-1 row-span-1">
+      <div class="p-4 md:p-6">
+       <div class="flex justify-between items-center">
+        <h2 class="md:text-lg font-semibold">Documents</h2>
+        <img src="/gfx/symbols/text.stamp.on.text.rectangle.angled.fill.badge.plus.png" alt="Document storage" class="w-10" />
+       </div>
+       <p class="text-gray-600">Digitize your glovebox with on-device intelligence.</p>
+      </div>
+     </div>
+     <div class="puck overflow-hidden rounded-xl bg-white col-span-2 row-span-2">
+      <div class="flex justify-between items-center p-4 md:pt-6 md:pl-6 md:pr-6 md:pb-5">
+       <div>
+        <h2 class="md:text-lg font-semibold">Powerful OBD terminal</h2>
         <p class="text-gray-600">Inline results and details help you navigate your car's diagnostics.</p>
        </div>
-       <img src="/gfx/symbols/obdii.plug.filled.png" alt="OBD plug required" width="48px">
+       <img src="/gfx/symbols/obdii.plug.filled.png" alt="OBD plug required" class="w-12" />
       </div>
+      <img src="/gfx/terminal.png" alt="Run OBD commands on the terminal" class="max-w-96 mx-auto" />
      </div>
-     <img src="/gfx/terminal.png" alt="Read diagnostic information from your car"
-      class="lg:absolute lg:bottom-0 mx-auto" width="359px">
-    </div>
-    <!-- 2x2 Tile -->
-    <div class="col-span-2 row-span-2 px-4 lg:px-6">
-     <div class="pt-4 lg:pt-6 pb-3">
-      <div class="flex items-center">
-       <img src="/gfx/symbols/carplay.png" alt="Apple CarPlay" width="24px">
-       <h3 class="pl-3 lg:text-lg font-semibold">OBD + CarPlay = 🎉</h3>
+     <div class="col-span-2 row-span-2 flex flex-col">
+      <div class="flex justify-start items-center px-2 md:px-3 pt-3 md:pt-5 pb-3">
+       <img src="/gfx/symbols/carplay.png" alt="Apple CarPlay" class="w-7" />
+       <h2 class="md:text-lg font-semibold pl-3">OBD + CarPlay = 🎉</h2>
       </div>
+      <img src="/gfx/carplay-card.png" alt="Navigate with CarPlay" class="mb-3 mx-auto max-w-96" />
+      <img src="/gfx/carplay-obd.png" alt="Read diagnostic information from CarPlay" class="mx-auto max-w-96" />
      </div>
-     <img src="/gfx/carplay-card.png" alt="Navigate with CarPlay" class="mx-auto" width="359px">
-     <img src="/gfx/carplay-obd.png" alt="Read diagnostic information from CarPlay" class="mx-auto mt-3" width="359px">
     </div>
    </div>
-  </div>
-
-  <!-- Trip logger -->
-  <div class="text-black py-12">
-   <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-between">
-    <div class="md:hidden text-center lg:w-1/2">
-     <h2 class="text-3xl font-bold font-rounded">Trip logger & OBD scanner</h2>
-     <p class="text-base md:text-lg mb-8">Effortless journey history & detailed statistics</p>
+   <!-- Trip logger & OBD scanner -->
+   <div class="container mx-auto px-2 md:px-0 text-primary flex justify-between items-center flex-col md:flex md:flex-row py-12">
+    <div class="text-center md:hidden">
+     <h2 class="text-3xl font-bold font-rounded">Trip Logger &amp; OBD Scanner</h2>
+     <p class="md:text-lg mb-8">Effortless journey history &amp; detailed statistics</p>
     </div>
-
-    <div class="mb-8 lg:mb-0 lg:w-1/2">
-     <img src="/gfx/triplogger.png" alt="Electric Sidecar's trip logger shows historical trip information"
-      class="mx-auto lg:mx-0">
+    <div class="p-4 md:p-8 mb-8 md:mb-0 md:w-1/2">
+     <img src="/gfx/triplogger.png" alt="Electric Sidecar's trip logger shows historical trip information" class="mx-auto md:mx-0" />
     </div>
-
-    <div class="text-center lg:w-1/2">
-     <h2 class="hidden md:block text-3xl font-bold font-rounded">Trip logger & OBD scanner</h2>
-     <p class="hidden md:block text-base md:text-lg mb-8">Effortless journey history & detailed statistics</p>
-
-     <div class="flex justify-center mb-8">
-      <div class="mr-4">
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/clock.arrow.2.circlepath.png" alt="Optimized daily use" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Heavily optimized for all-day use</h3>
-       </div>
+    <div class="md:px-4 space-y-8 md:w-1/2">
+     <div class="text-center hidden md:block">
+      <h2 class="text-3xl font-bold font-rounded">Trip Logger &amp; OBD Scanner</h2>
+      <p class="md:text-lg mb-8">Effortless journey history &amp; detailed statistics</p>
+     </div>
+     <div class="space-x-8 flex justify-center">
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/clock.arrow.2.circlepath.png" alt="Optimized daily use" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Heavily optimized for all-day use</h3>
       </div>
-      <div>
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/switch.2.png" alt="Intelligent trip detection" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Intelligently detects when trips begin and end</h3>
-       </div>
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/switch.2.png" alt="Intelligent trip detection" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Intelligently detects when trips begin and end</h3>
       </div>
      </div>
-
-     <div class="flex justify-center mb-8">
-      <div class="mr-4">
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/chart.bar.xaxis.png" alt="Trip economy" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Tracks historic trip economy statistics</h3>
-       </div>
+     <div class="space-x-8 flex justify-center">
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/chart.bar.xaxis.png" alt="Trip economy" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Tracks historic trip economy statistics</h3>
       </div>
-      <div>
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/obdii.plug.filled.png" alt="OBD scanning" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Connects to your OBD scanner for detailed logs</h3>
-       </div>
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/obdii.plug.filled.png" alt="OBD scanning" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Connects to your OBD scanner for detailed logs</h3>
       </div>
      </div>
     </div>
    </div>
-  </div>
-
-  <!-- Maintenance minder -->
-  <div class="text-black py-12">
-   <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-between">
-    <div class="text-center lg:w-1/2 mr-8">
-     <h2 class="text-3xl font-bold font-rounded">Maintenance Minder</h2>
-     <p class="text-base md:text-lg mb-8">Take care of your car so it can take care of you</p>
-
-     <div class="flex justify-center mb-8">
-      <div class="mr-4">
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/exclamationmark.triangle.fill.png" alt="Recall notices" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Recalls delivered straight to your phone</h3>
-       </div>
+   <!-- Maintenance minder -->
+   <div class="container mx-auto px-2 md:px-0 text-primary flex justify-between items-center flex-col md:flex md:flex-row py-12">
+    <div class="md:px-4 space-y-8 md:w-1/2">
+     <div class="text-center">
+      <h2 class="text-3xl font-bold font-rounded">Maintenance Minder</h2>
+      <p class="md:text-lg mb-8">Take care of your car so it can take care of you</p>
+     </div>
+     <div class="space-x-8 flex justify-center">
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/exclamationmark.triangle.fill.png" alt="Recall notices" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Recalls delivered straight to your phone</h3>
       </div>
-      <div>
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/calendar.badge.checkmark.png" alt="Maintenance schedule" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Stay on top of your maintenance schedule</h3>
-       </div>
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/calendar.badge.checkmark.png" alt="Maintenance schedule" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Stay on top of your maintenance schedule</h3>
       </div>
      </div>
-
-     <p class="text-xs">
-      Recall notices are currently only supported in the USA<br>
-      Maintenance schedules require Connected Accounts (Beta)
-     </p>
+     <div class="text-xs text-center">
+      <p>Recall notices are currently only supported in the USA</p>
+      <p>Maintenance schedules require Connected Accounts (Beta)</p>
+     </div>
     </div>
-
-    <div class="mb-8 lg:mb-0 lg:w-1/2">
-     <img src="/gfx/maintenance-minder.png" alt="Electric Sidecar delivers full recall notices to your phone"
-      class="mx-auto lg:mx-0">
+    <div class="p-4 md:p-8 mb-8 md:mb-0 md:w-1/2">
+     <img src="/gfx/maintenance-minder.png" alt="Electric Sidecar delivers full recall notices to your phone" class="mx-auto md:mx-0" />
     </div>
    </div>
-  </div>
-
-  <!-- Tiers -->
-  <div class="text-black py-12">
-   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-4">Available plans</h2>
-    <div class="text-center mb-4">
-     <a href="https://apps.apple.com/us/app/electric-sidecar/id1663683832" target="_blank" rel="noopener noreferrer">
-      <img src="/gfx/AppStore.png" alt="Download Electric Sidecar from the App Store" style="max-height: 40px"
-       class="mx-auto">
-     </a>
-    </div>
-    <div class="flex flex-col lg:flex-row justify-center">
-     <div class="max-w-sm rounded-lg overflow-hidden mx-2 mb-8 lg:mb-0">
-      <div class="px-6 py-4">
-       <div class="font-bold text-xl text-center">Free</div>
-       <p class="text-base text-center mb-4">Basic features</p>
-       <ul class="list-disc pl-4">
-        <li>Simulated vehicles</li>
-        <li>Offline vehicles</li>
-        <li>Vehicle issues</li>
-        <li>Vehicle recalls</li>
-        <li>Test Connected Accounts</li>
-        <li>30 seconds free OBD scanning</li>
+   <!-- Tiers -->
+   <div class="container flex justify-center flex-col space-y-6">
+    <h2 class="text-3xl text-center font-bold font-rounded">Available plans</h2>
+    <a href="https://apps.apple.com/us/app/electric-sidecar/id1663683832" target="_blank" class="mx-auto"><img src="/gfx/AppStore.png" alt="Download Electric Sidecar from the App Store" class="max-h-10" /></a>
+    <div class="flex items-start space-x-8">
+     <div class="py-4 px-6">
+      <div class="text-center mb-4">
+       <h3 class="font-bold text-xl">Free</h3>
+       <p>Basic features</p>
+      </div>
+      <ul class="pl-4 list-disc">
+       <li>Simulated vehicles</li>
+       <li>Offline vehicles</li>
+       <li>Vehicle issues</li>
+       <li>Vehicle recalls</li>
+       <li>Test Connected Accounts</li>
+       <li>30 seconds free OBD scanning</li>
+      </ul>
+     </div>
+     <div class="bg-white overflow-hidden rounded-lg py-4 px-6 max-w-sm puck">
+      <div class="text-center mb-4">
+       <h3 class="font-bold text-xl">ScanPass</h3>
+       <p>On demand OBD</p>
+      </div>
+      <ul class="pl-4 list-disc mb-4">
+       <li>Great for quick diagnostics</li>
+       <li>Pay as you need it</li>
+       <li>70+ standard PIDs</li>
+       <li>Growing community of <a href="/scanning/extended-pids" class="text-blue-500 hover:underline">Extended PIDs</a></li>
+      </ul>
+      <div class="font-bold text-center">
+       <p>24 hours: $0.99 USD</p>
+       <p>1 week: $4.99 USD</p>
+      </div>
+     </div>
+     <div class="shadow-lg bg-gradient-to-tl from-cyan-500 to-blue-500 text-white overflow-hidden rounded-lg py-4 px-6 max-w-lg puck">
+      <div class="text-center mb-4">
+       <h3 class="font-bold text-xl">Subscription</h3>
+       <p>Unlock all features</p>
+      </div>
+      <div class="flex justify-between space-x-2 mb-4">
+       <ul class="pl-4 list-disc">
+        <li>Trip logger</li>
+        <li>Recall notices</li>
+        <li>Document scanner</li>
+        <li>Historical statistics</li>
+        <li>OBD scanning</li>
+       </ul>
+       <ul class="pl-4 list-disc">
+        <li>Storage mode</li>
+        <li>Widgets</li>
+        <li>Live Activities</li>
+        <li>Siri Shortcuts</li>
+        <li>Connected Accounts (Beta)</li>
        </ul>
       </div>
-     </div>
-
-     <div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white mx-4 mb-8 lg:mb-0">
-      <div class="px-6 py-4">
-       <div class="font-bold text-xl text-center">ScanPass</div>
-       <p class="text-base text-center mb-4">On demand OBD</p>
-       <ul class="list-disc pl-4">
-        <li>Great for quick diagnostics</li>
-        <li>Pay as you need it</li>
-        <li>70+ standard PIDs supported</li>
-        <li>Growing community of <a class="text-blue-500 hover:underline" href="/scanning/extended-pids">Extended
-          PIDs</a></li>
-       </ul>
-      </div>
-      <p class="text-base font-bold text-center">24 hours: $0.99 USD</p>
-      <p class="text-base font-bold text-center mb-4">1 week: $4.99 USD</p>
-     </div>
-
-     <div
-      class="max-w-lg rounded-lg overflow-hidden shadow-lg bg-gradient-to-tl from-cyan-500 to-blue-500 text-white mx-4">
-      <div class="pl-6 lg:px-6 py-4">
-       <div class="font-bold text-xl text-center">Subscription</div>
-       <p class="text-base mb-4 text-center">Unlock all features</p>
-       <div class="flex justify-between text-left mb-4">
-        <div class="w-1/2">
-         <ul class="list-disc text-base pl-4">
-          <li>Trip logger</li>
-          <li>Recall notices</li>
-          <li>Document scanner</li>
-          <li>Historical statistics</li>
-          <li>OBD scanning</li>
-         </ul>
-        </div>
-        <div class="w-1/2 ml-2">
-         <ul class="list-disc text-base">
-          <li>Storage mode</li>
-          <li>Widgets</li>
-          <li>Live Activities</li>
-          <li>Siri Shortcuts</li>
-          <li>Connected Accounts (Beta)</li>
-         </ul>
-        </div>
-       </div>
-       <p class="text-base font-bold text-center">$6.99 USD/month</p>
-       <p class="text-base font-bold text-center">2-week free trial</p>
+      <div class="font-bold text-center">
+       <p>$6.99 USD/month</p>
+       <p>2-week free trial</p>
       </div>
      </div>
     </div>
    </div>
-  </div>
-
-  <!-- Deeply integrated -->
-  <div class="text-black py-12">
-   <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-between">
-    <div class="mb-8 lg:mb-0 lg:w-1/2">
-     <img src="/gfx/integrated.png" alt="Electric Sidecar is deeply integrated with iOS features"
-      class="mx-auto lg:mx-0">
+   <!-- Deeply integrated -->
+   <div class="container mx-auto px-2 md:px-0 text-primary flex justify-between items-center flex-col md:flex md:flex-row py-12">
+    <div class="p-4 md:p-8 mb-8 md:mb-0 md:w-1/2">
+     <img src="/gfx/integrated.png" alt="Electric Sidecar is deeply integrated with iOS features" class="mx-auto md:mx-0" />
     </div>
-
-    <div class="text-center lg:w-1/2">
-     <h2 class="text-3xl font-bold font-rounded">Deeply integrated</h2>
-     <p class="text-base md:text-lg mb-8">Make the best use of your connected devices</p>
-
-     <div class="flex justify-center mb-8">
-      <div class="mr-4">
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/accessibility.png" alt="Accessible" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Accessibility</h3>
-       </div>
+    <div class="md:px-4 space-y-8 md:w-1/2">
+     <div class="text-center">
+      <h2 class="text-3xl font-bold font-rounded">Deeply Integrated</h2>
+      <p class="md:text-lg mb-8">Make the best use of your connected devices</p>
+     </div>
+     <div class="space-x-8 flex justify-center">
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/accessibility.png" alt="Accessible" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Accessibility</h3>
       </div>
-      <div class="mr-4">
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/waveform.png" alt="Siri shortcuts" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Siri shortcuts</h3>
-       </div>
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/waveform.png" alt="Siri shortcuts" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Siri shortcuts</h3>
       </div>
-      <div>
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/applewatch.png" alt="Apple watch" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Watch app</h3>
-       </div>
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/applewatch.png" alt="Apple watch" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Watch app</h3>
       </div>
      </div>
-     <div class="flex justify-center mb-8">
-      <div class="mr-4">
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/platter.filled.bottom.iphone.png" alt="Live Activities" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Live Activities</h3>
-       </div>
+     <div class="space-x-8 flex justify-center">
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/platter.filled.bottom.iphone.png" alt="Live Activities" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Live Activities</h3>
       </div>
-      <div class="mr-4">
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/watchface.applewatch.case.png" alt="Complications" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Complications</h3>
-       </div>
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/watchface.applewatch.case.png" alt="Complications" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Complications</h3>
       </div>
-      <div>
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/square.grid.3x3.square.png" alt="Widgets" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Widgets</h3>
-       </div>
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/square.grid.3x3.square.png" alt="Widgets" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Widgets</h3>
       </div>
      </div>
-
-     <div class="text-center mb-4">
-      <img src="/gfx/complications.png" alt="Watch complications" class="h-60 mx-auto w-auto">
-     </div>
+     <img src="/gfx/complications.png" alt="Watch complications" class="h-60 mx-auto" />
     </div>
    </div>
-  </div>
-
-  <!-- Community knowledgebase -->
-  <div class="text-black py-12">
-   <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-between">
-    <div class="text-center lg:w-1/2 mr-8">
-     <h2 class="text-3xl font-bold font-rounded">Community knowledge base</h2>
-     <p class="text-base md:text-lg mb-8">Discuss common issues and share OBD parameters</p>
-
-     <div class="flex justify-center mb-8">
-      <div class="mr-4">
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/cc.png" alt="Accessible" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Creative commons licensed</h3>
-       </div>
+   <!-- Community knowledge base -->
+   <div class="container mx-auto px-2 md:px-0 text-primary flex justify-between items-center flex-col md:flex md:flex-row py-12">
+    <div class="md:px-4 space-y-8 md:w-1/2">
+     <div class="text-center">
+      <h2 class="text-3xl font-bold font-rounded">Community Knowledge Base</h2>
+      <p class="md:text-lg mb-8">Discuss common issues and share OBD parameters</p>
+     </div>
+     <div class="space-x-8 flex justify-center">
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/cc.png" alt="Creative commons" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Creative commons licensed</h3>
       </div>
-      <div>
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/person.3.fill.png" alt="Siri shortcuts" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Join discussions in the forums</h3>
-       </div>
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/person.3.fill.png" alt="Forums" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Join discussions in the forums</h3>
       </div>
      </div>
-     <div class="flex justify-center mb-8 max-w-60 mx-auto">
-      <div>
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/books.vertical.fill.png" alt="Apple watch" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Participate in the community</h3>
-       </div>
+     <div class="space-x-8 flex justify-center">
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/books.vertical.fill.png" alt="Participate" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Participate in the community</h3>
       </div>
      </div>
-
-     <p class="text-xs">
-      Community features require a GitHub account<br>
+     <div class="text-xs text-center">
+      <p>Community features require a GitHub account</p>
       <a href="https://github.com/ElectricSidecar" target="_blank">github.com/ElectricSidecar</a>
-     </p>
+     </div>
     </div>
-
-    <div class="mb-8 lg:mb-0 lg:w-1/2">
-     <img src="/gfx/community.png" alt="Electric Sidecar's community is open to the public" class="mx-auto lg:mx-0">
+    <div class="p-4 md:p-8 mb-8 md:mb-0 md:w-1/2">
+     <img src="/gfx/community.png" alt="Electric Sidecar's community is open to the public" class="mx-auto md:mx-0" />
     </div>
    </div>
-  </div>
-
-  <!-- Thoughtfully accessible -->
-  <div class="text-black py-12">
-   <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-between">
-    <div class="mb-8 lg:mb-0 lg:w-1/2">
-     <img src="/gfx/accessible.png" alt="Electric Sidecar is deeply integrated with iOS features"
-      class="mx-auto lg:mx-0">
+   <!-- Thoughtfully accessible -->
+   <div class="container mx-auto px-2 md:px-0 text-primary flex justify-between items-center flex-col md:flex md:flex-row py-12">
+    <div class="p-4 md:p-8 mb-8 md:mb-0 md:w-1/2">
+     <img src="/gfx/accessible.png" alt="Electric Sidecar is deeply integrated with iOS features" class="mx-auto md:mx-0" />
     </div>
-
-    <div class="text-center lg:w-1/2">
-     <h2 class="text-3xl font-bold font-rounded">Thoughtfully accessible</h2>
-     <p class="text-base md:text-lg mb-8">Designed to meet a wide range of needs</p>
-
-     <div class="flex justify-center mb-8">
-      <div class="mr-4">
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/textformat.size.png" alt="Dynamic Type" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Dynamic Type</h3>
-       </div>
+    <div class="md:px-4 space-y-8 md:w-1/2">
+     <div class="text-center">
+      <h2 class="text-3xl font-bold font-rounded">Thoughtfully Accessible</h2>
+      <p class="md:text-lg mb-8">Designed to meet a wide range of needs</p>
+     </div>
+     <div class="space-x-8 flex justify-center">
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/textformat.size.png" alt="Dynamic Type" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Dynamic Type</h3>
       </div>
-      <div class="mr-4">
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/bold.png" alt="Bold Text" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Bold Text</h3>
-       </div>
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/bold.png" alt="Bold Text" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Bold Text</h3>
       </div>
      </div>
-     <div class="flex justify-center mb-8">
-      <div class="mr-4">
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/circle.righthalf.filled.png" alt="Dark Mode" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Dark Mode</h3>
-       </div>
+     <div class="space-x-8 flex justify-center">
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/circle.righthalf.filled.png" alt="Dark Mode" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Dark Mode</h3>
       </div>
-      <div>
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/voiceover.png" alt="VoiceOver" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">VoiceOver</h3>
-       </div>
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/voiceover.png" alt="VoiceOver" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">VoiceOver</h3>
       </div>
      </div>
     </div>
    </div>
-  </div>
-
-  <!-- Intelligent glovebox -->
-  <div class="text-black py-12">
-   <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-between">
-    <div class="text-center lg:w-1/2 mr-8">
-     <h2 class="text-3xl font-bold font-rounded">Intelligent glovebox</h2>
-     <p class="text-base md:text-lg mb-8">Secure document scanning with on-device vision</p>
-
-     <div class="flex justify-center mb-8">
-      <div class="mr-4">
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/text.stamp.on.text.rectangle.angled.fill.badge.plus.png" alt="Scan and import documents"
-         class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Scan and import documents</h3>
-       </div>
+   <!-- Intelligent glovebox -->
+   <div class="container mx-auto px-2 md:px-0 text-primary flex justify-between items-center flex-col md:flex md:flex-row py-12">
+    <div class="md:px-4 space-y-8 md:w-1/2">
+     <div class="text-center">
+      <h2 class="text-3xl font-bold font-rounded">Intelligent Glovebox</h2>
+      <p class="md:text-lg mb-8">Secure document scanning with on-device vision</p>
+     </div>
+     <div class="space-x-8 flex justify-center">
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/text.stamp.on.text.rectangle.angled.fill.badge.plus.png" alt="Scan and import documents" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Scan and import documents</h3>
       </div>
-      <div>
-       <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center">
-        <img src="/gfx/symbols/sparkles.png" alt="Automotic extraction" class="h-8 mb-2">
-        <h3 class="text-sm md:text-base leading-tight">Automatically extracts dates, VINs, and barcodes</h3>
-       </div>
+      <div class="text-center flex justify-center items-center flex-col">
+       <img src="/gfx/symbols/sparkles.png" alt="Automatic extraction" class="h-8 mb-2" />
+       <h3 class="md:text-base text-sm leading-tight">Automatically extracts dates, VINs, and barcodes</h3>
       </div>
      </div>
     </div>
-
-    <div class="mb-8 lg:mb-0 lg:w-1/2">
-     <img src="/gfx/glovebox.png" alt="Scan and import documents" class="mx-auto lg:mx-0">
+    <div class="p-4 md:p-8 mb-8 md:mb-0 md:w-1/2">
+     <img src="/gfx/glovebox.png" alt="Scan and import documents" class="mx-auto md:mx-0" />
     </div>
    </div>
-  </div>
-
-  <div class="text-black py-12">
-   <div class="container mx-auto px-4 text-center">
-    <img src="/gfx/appicon.png" alt="Electric Sidecar app icon" class="h-32 w-auto mx-auto mb-4">
-
-    <h1 class="text-4xl font-bold font-rounded">Electric Sidecar</h1>
-    <p class="mb-4 text-xl md:text-2xl">Take it for a spin</p>
-   </div>
-   <a class="appstorelink" href="https://apps.apple.com/us/app/electric-sidecar/id1663683832" target="_blank"
-    rel="noopener noreferrer">
-    <img class="mx-auto" src="/gfx/AppStore.png" alt="Download Electric Sidecar from the App Store"
-     style="max-height: 40px">
-   </a>
-  </div>
-
-  <footer class="bg-dark text-white py-8">
-   <div class="container mx-auto px-4">
-    <div class="text-left">
-     <p class="mb-4">Apple Watch, watchOS and iPhone are trademarks of Apple Inc., registered in the U.S. and other
-      countries and regions.</p>
-     <p class="mb-4">Third party logos and brand names are used for information purposes only and do not
-      necessarily indicate affiliation with Electric Sidecar.</p>
-     <p>Copyright © 2024 fearless design, LLC. All rights reserved.</p>
+   <div class="container mx-auto px-2 md:px-0">
+    <img src="/gfx/appicon.gif" alt="Electric Sidecar app icon" class="h-28 w-auto mx-auto mt-2 mb-6 rounded-3xl puck border-4 border-white" />
+    <div class="text-center">
+     <h1 class="text-4xl font-bold font-rounded">Electric Sidecar</h1>
+     <p class="text-xl md:text-2xl mb-4">Take it for a spin</p>
     </div>
+    <a href="https://apps.apple.com/us/app/electric-sidecar/id1663683832" target="_blank" class="flex justify-center mb-16"><img src="/gfx/AppStore.png" alt="Download Electric Sidecar from the App Store" class="max-h-10" /></a>
    </div>
-  </footer>
- </main>
-</body>
-
+   <footer class="bg-dark text-white py-8">
+    <div class="container">
+     <div class="flex flex-col space-y-4">
+      <p>Apple Watch, watchOS and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries and regions.</p>
+      <p>Third party logos and brand names are used for information purposes only and do not necessarily indicate affiliation with Electric Sidecar.</p>
+      <p>Copyright © 2024 fearless design, LLC. All rights reserved.</p>
+     </div>
+    </div>
+   </footer>
+  </main>
+ </body>
 </html>

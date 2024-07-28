@@ -13,12 +13,12 @@ module.exports = {
       'rounded': ['ui-rounded', '-apple-system', 'system-ui', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif']
     },
     container: {
-      center: true,
-      screens: {
-          'sm': '375px',
-          'lg': '900px',
-      }
+      center: true
     },
+    screens: {
+      'sm': '375px',
+      'md': '900px',
+    }
   },
   plugins: [],
 }
