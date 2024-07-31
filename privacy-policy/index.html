@@ -14,12 +14,15 @@
   <script>!function (t, e) { var o, n, p, r; e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) { function g(t, e) { var o = e.split("."); 2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } } (p = t.createElement("script")).type = "text/javascript", p.async = !0, p.src = s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r); var u = e; for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) { var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e }, u.people.toString = function () { return u.toString(1) + ".people (stub)" }, o = "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "), n = 0; n < o.length; n++)g(u, o[n]); e._i.push([i, s, a]) }, e.__SV = 1) }(document, window.posthog || []);
 posthog.init('phc_eDtYLUe7s9m2FdF3d1hsw8XXnG57yJNU4rLvbT0IXNV', { api_host: 'eu' })</script>
  </head>
- <body class="bg-gray-100 antialiased">
+ <body class="bg-gray-100 dark:bg-zinc-950 text-sidecar-gray dark:text-white antialiased">
   <main>
    <!-- Navigation bar -->
    <div class="container mx-auto px-2 md:px-0">
-    <div class="py-2 border-b border-gray-300 flex justify-between text-primary">
-     <a href="/" class="flex items-center opacity-70 hover:opacity-100 transition-opacity"><img src="/gfx/site-logo.png" alt="Electric Sidecar logo" class="h-6 md:h-8 mr-1 md:mr-2" /><p class="font-rounded text-sm md:text-base font-bold w-24 leading-none md:leading-tight">Electric Sidecar</p></a>
+    <div class="py-2 border-b border-gray-300 flex justify-between text-sidecar-gray dark:text-white">
+     <a href="/" class="flex items-center opacity-70 hover:opacity-100 transition-opacity">
+      <picture>
+       <img src="/gfx/site-logo.png" class="dark:invert h-6 md:h-8 mr-1 md:mr-2" alt="Electric Sidecar logo" />
+      </picture><p class="font-rounded text-sm md:text-base font-bold w-24 leading-none md:leading-tight">Electric Sidecar</p></a>
      <nav class="flex items-center">
       <a href="/shortcuts" class="text-sm md:text-base font-medium mr-4 opacity-70 hover:opacity-100">Shortcuts</a>
       <a href="/scanning" class="text-sm md:text-base font-medium mr-4 opacity-70 hover:opacity-100">Scanning</a>
@@ -31,7 +34,7 @@ posthog.init('phc_eDtYLUe7s9m2FdF3d1hsw8XXnG57yJNU4rLvbT0IXNV', { api_host: 'eu'
    </div>
    <div class="container pb-4">
     <div class="flex justify-center flex-col py-4">
-     <img src="/gfx/privacy.png" alt="Privacy policy" class="bg-sidecar-gray w-28 h-28 mx-auto mt-2 mb-6 rounded-3xl puck border-4 border-white" />
+     <img src="/gfx/privacy.png" alt="Electric Sidecar app icon" class="bg-sidecar-gray w-28 h-28 mx-auto mt-2 mb-6 rounded-3xl puck border-4 border-white dark:border dark:border-zinc-700" />
      <div class="text-center">
       <h1 class="text-4xl font-bold font-rounded">Privacy Policy</h1>
       <p>Last updated July 4, 2024</p>

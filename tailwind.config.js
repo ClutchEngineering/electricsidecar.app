@@ -8,6 +8,7 @@ module.exports = {
     "./scanning/repo-status/*.html",
     "./shortcuts/*.html"
   ],
+  darkMode: 'media',
   theme: {
     extend: {
       colors: {
