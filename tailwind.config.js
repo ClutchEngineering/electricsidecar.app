@@ -9,6 +9,11 @@ module.exports = {
     "./shortcuts/*.html"
   ],
   theme: {
+    extend: {
+      colors: {
+        'sidecar-gray': '#262625',
+      }
+    },
     fontFamily: {
       'rounded': ['ui-rounded', '-apple-system', 'system-ui', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif']
     },
